@@ -1,0 +1,51 @@
+{
+  "name": "vite5_tailwind3_scss_ejs_template",
+  "description": "vite5 + tailwind3 + scss + ejs + deploy firebase hosting",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf dist && vite build && html-beautify dist/**/*.html && esbuild src/public/assets/js/*.js --bundle --minify --outdir=dist/assets/js/",
+    "preview": "vite preview",
+    "deploy": "",
+    "clean": "rimraf build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/plugin-transform-arrow-functions": "^7.23.3",
+    "@babel/plugin-transform-runtime": "^7.23.4",
+    "@babel/preset-env": "^7.23.5",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "autoprefixer": "^10.4.16",
+    "css-declaration-sorter": "^7.1.1",
+    "ejs": "^3.1.9",
+    "ejs-lint": "^2.0.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "glob": "^10.3.10",
+    "js-beautify": "^1.14.11",
+    "postcss": "^8.4.32",
+    "postcss-normalize-charset": "^6.0.0",
+    "postcss-sort-media-queries": "^5.2.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.6.1",
+    "sass": "^1.69.5",
+    "vite": "^5.0.5",
+    "vite-plugin-ejs": "^1.7.0",
+    "vite-plugin-handlebars": "^1.6.0",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-live-reload": "^3.0.3"
+  },
+  "dependencies": {
+    "core-js": "^3.33.3",
+    "jquery": "^3.7.1",
+    "tailwindcss": "^3.3.6"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "ie >= 11"
+  ],
+  "comments": {
+    "npm-check-updates": "$ npx ncu, $ npx ncu -u --target patch"
+  }
+}

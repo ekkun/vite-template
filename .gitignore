@@ -1,0 +1,9 @@
+*.log
+
+*/node_modules/
+*/dist/
+vendor
+debug.php
+.env
+_datacache
+sitemap.xml

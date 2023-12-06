@@ -1,0 +1,37 @@
+<%- include('./_templates/_config.ejs'); %>
+<%_
+  const meta = {
+    page: 'home',
+    title: 'HOME｜サイト名',
+    description: 'ここにHOMEのディスクリプションが入ります',
+    canonical: 'https://prod.com/',
+    ogp: 'https://prod.com/assets/images/ogp.png',
+    stylePath: './scss/',
+    scriptPath: './js/',
+    imgPath: '/images/',
+    linkPath: '/'
+  };
+  const structured = {
+    item: [
+      {
+      },
+    ]
+  };
+_%>
+<%- include('./_templates/_head.ejs', { domain, path, dir, meta: meta, structured }); %>
+<%- include('./_templates/_header.ejs', { domain, path, dir, meta: meta }); %>
+<%- include('./_templates/_home.ejs', { domain, path, dir, meta: meta }); %>
+<%- include('./_templates/_footer.ejs', { domain, path, dir, meta: meta }); %>
+
+<div>
+  <%- data.title %>
+</div>
+
+
+
+
+<link rel="stylesheet" href="./scss/style.scss" />
+<script src="./js/main.js"></script>
+
+</body>
+</html>
