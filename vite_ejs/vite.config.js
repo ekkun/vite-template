@@ -59,7 +59,8 @@ export default defineConfig({
             extType = 'fonts';
           }
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            extType = 'images';
+            //extType = 'images';
+            return 'assets/images/[name].[ext]';
           }
           // ビルド時のCSS名を明記してコントロールする
           /*if (extType === 'css') {
