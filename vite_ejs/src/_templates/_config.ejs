@@ -1,0 +1,19 @@
+<%_
+  const state = process.env.NODE_ENV;
+  if (state === 'production') {
+    // 本番環境
+    domain = 'https://prod.com';
+    path = '/';
+    dir = '/';
+  } else if (state === 'development') {
+    // 開発環境
+    domain = 'https://dev.com/sub-directory';
+    path = '/sub-directory/';
+    dir = '/sub-directory/';
+  } else {
+    // ローカル環境
+    domain = 'http://localhost:4000';
+    path = '/';
+    dir = '/';
+}
+_%>
