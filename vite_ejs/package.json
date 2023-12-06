@@ -1,7 +1,10 @@
 {
-  "name": "vite5_tailwind3_scss_ejs_template",
-  "description": "vite5 + tailwind3 + scss + ejs + deploy firebase hosting",
+  "name": "vite_ejs_template",
+  "description": "Vite + ejs + Sass + Babel",
   "version": "1.0.0",
+  "keywords": [],
+  "author": "eiji@design24c.com",
+  "license": "(c) Design24C",
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && vite build && html-beautify dist/**/*.html && esbuild src/public/assets/js/*.js --bundle --minify --outdir=dist/assets/js/",
