@@ -23,15 +23,14 @@ _%>
 <%- include('./_templates/_home.ejs', { domain, path, dir, meta: meta }); %>
 <%- include('./_templates/_footer.ejs', { domain, path, dir, meta: meta }); %>
 
-<div>
-  <%- data.title %>
-</div>
+<div><%- data.title %></div>
 
-
-
+<figure style="text-align: center;">
+  <img src="./public/assets/images/logo-with-shadow.png" alt="Vite" width="200">
+</figure>
 
 <link rel="stylesheet" href="./scss/style.scss" />
-<script src="./js/main.js"></script>
+<script type="module" src="./js/main.js"></script>
 
 </body>
 </html>
