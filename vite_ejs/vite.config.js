@@ -48,6 +48,10 @@ export default defineConfig({
   //root: './src',
   root: path.resolve(__dirname, './src'),
 
+  css: {
+    devSourcemap: true, // this one
+  },
+
   build: {
     outDir: '../dist',
     emptyOutDir: true,

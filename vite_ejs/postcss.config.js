@@ -5,9 +5,9 @@ module.exports = {
     'postcss-sort-media-queries': {},
     'css-declaration-sorter': { order: 'smacss' },
     '@fullhuman/postcss-purgecss': {
-      content: ['./src/**/*.html', './src/js/**/*.js'],
+      content: ['./src/**/*.html', './src/js/**/*.ejs', './src/js/**/*.js'],
       // 除外設定　https://purgecss.com/safelisting.html
-      safelist: ['hoge'],
+      //safelist: ['hoge'],
     },
   },
 };
