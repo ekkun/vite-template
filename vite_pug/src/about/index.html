@@ -1,0 +1,36 @@
+<%- include('./_templates/_config.ejs'); %>
+<%_
+  const meta = {
+    page: 'about',
+    title: 'ABOUT｜サイト名',
+    description: 'ここにaboutのディスクリプションが入ります',
+    canonical: 'https://prod.com/about/detail/',
+    ogp: 'https://prod.com/assets/images/ogp.png',
+    stylePath: '/assets/css/',
+    scriptPath: '/assets/js/',
+    imgPath: '/assets/images/',
+    linkPath: '../'
+  };
+  const structured = {
+    item: [
+      {
+        level: '2',
+        name: 'アバウト',
+        url: `/${ meta.page }/`,
+      },
+    ],
+  };
+_%>
+<%- include('./_templates/_head.ejs', { domain, path, dir, meta: meta, structured }); %>
+<%- include('./_templates/_header.ejs', { domain, path, dir, meta: meta }); %>
+<main class="main">
+  <h1 class="">ABOUT</h1>
+  <p>アバウトページです。</p>
+</main>
+<%- include('./_templates/_footer.ejs', { domain, path, dir, meta: meta }); %>
+<!--script src="< %= meta.scriptPath; %>main.js"></script-->
+
+<link rel="stylesheet" href="../scss/style.scss" />
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>
