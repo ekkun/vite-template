@@ -1,0 +1,56 @@
+{
+  "name": "vite_pug_template",
+  "description": "Vite + Pug + Sass + Babel",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "eiji@design24c.com",
+  "license": "(c) Design24C",
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf dist && vite build && html-beautify dist/**/*.html && esbuild src/public/assets/js/*.js --bundle --minify --outdir=dist/assets/js/",
+    "preview": "vite preview",
+    "deploy": "",
+    "clean": "rimraf build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/plugin-transform-arrow-functions": "^7.23.3",
+    "@babel/plugin-transform-runtime": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@types/node": "^20.10.5",
+    "@types/pug": "^2.0.10",
+    "autoprefixer": "^10.4.16",
+    "css-declaration-sorter": "^7.1.1",
+    "ejs": "^3.1.9",
+    "ejs-lint": "^2.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "glob": "^10.3.10",
+    "js-beautify": "^1.14.11",
+    "postcss": "^8.4.32",
+    "postcss-normalize-charset": "^6.0.1",
+    "postcss-sort-media-queries": "^5.2.0",
+    "pug": "^3.0.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.9.1",
+    "sass": "^1.69.5",
+    "vite": "^5.0.10",
+    "vite-plugin-handlebars": "^1.6.0",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-live-reload": "^3.0.3"
+  },
+  "dependencies": {
+    "core-js": "^3.34.0",
+    "jquery": "^3.7.1",
+    "tailwindcss": "^3.4.0"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "ie >= 11"
+  ],
+  "comments": {
+    "npm-check-updates": "$ npx ncu, $ npx ncu -u --target patch"
+  }
+}
