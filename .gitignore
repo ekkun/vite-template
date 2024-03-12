@@ -7,3 +7,7 @@ debug.php
 .env
 _datacache
 sitemap.xml
+
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
