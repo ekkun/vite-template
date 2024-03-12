@@ -2,6 +2,7 @@
  * TEST
  */
 import $ from 'jquery';
+//import $ from 'https://esm.sh/jquery@3.7.1';
 
 (() => {
   document.addEventListener('DOMContentLoaded', () => {

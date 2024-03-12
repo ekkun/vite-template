@@ -1,8 +1,9 @@
 # Vite + EJS Template
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
+(Yarn だとパッケージのパスが通らずエラーでちゃうのよ...)
 
-(macOS13.2.1 / node v18.19.0 / npm v8.19.4 検証済み)
+(macOS 14.3.1 / node v18.19.0 / npm v10.5.0 検証済み)
 
 - html, ejs -> html
 - Sass -> css
