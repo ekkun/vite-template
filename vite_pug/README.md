@@ -2,7 +2,7 @@
 
 Vite + Pug + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS14.2.1 / node v18.19.0 / npm v8.19.4 検証済み)
+(macOS14.4.1 / node v21.6.2 / npm v10.5.0 / Yarn v4.1.1 / 検証済み)
 
 - Pug -> html
 - Sass -> css
@@ -13,13 +13,13 @@ Vite + Pug + Sass + Babel を使用したビルドツールのスターターキ
 プロジェクトのディレクトリに移動して実行
 
 ```
-$ npm install
+$ yarn install
 ```
 
 ## Vite の監視
 
 ```
-$ npm run dev
+$ yarn dev
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -27,7 +27,7 @@ $ npm run dev
 ファイル一式を生成
 
 ```
-$ npm run build
+$ yarn build
 ```
 
 ## ディレクトリ構成
@@ -60,6 +60,7 @@ $ npm run build
 │
 ├─ .eslintrc.js
 ├─ .jsbeautifyrc
+├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ package.json
 ├─ postcss.config.js
@@ -70,12 +71,12 @@ $ npm run build
 
 ## 再インストール
 
-`npm` でエラーが出た場合は再インストールをしてください。
+`yarn` でエラーが出た場合は再インストールをしてください。
 
 ```
 $ rm -rf node_modules
-$ npm cache clean --force
-$ npm install
+$ yarn cache clean --force
+$ yarn install
 ```
 
 ## 参考 <!-- Reference -->
