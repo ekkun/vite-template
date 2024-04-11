@@ -26,11 +26,30 @@ block main
   main#main.main
     .main__inner
 
+      figure(style="text-align: center;")
+        img(src="./public/assets/images/logo-with-shadow.png" alt="Vite" width="200")
+
+      figure(style="text-align: center;")
+        img(src="./public/assets/images/SVG_logo.svg" alt="SVG" width="200")
+
+      figure(style="text-align: center;")
+        img(src="./public/assets/images/sample.png" alt="SAMPLE" width="200")
+
+      figure(style="text-align: center;")
+        img(src="./public/assets/images/gulp-logo.svg" alt="Gulp" width="200")
+
+      figure(style="text-align: center;")
+        img(src="./public/assets/images/2076813463_59c314654d_o.png" alt="SAMPLE" width="200")
+
+      figure(style="text-align: center;")
+        img(src="./public/assets/images/33182094584_4352068d39_o.jpg" alt="SAMPLE" width="200")
+
   //- アーティクル
-  article
-    section.section
-      .section__inner
-        +article({})
+  //-
+    article
+      section.section
+        .section__inner
+          +article({})
 
 block append style
   // link(rel='stylesheet', href=`./scss/style.scss`)

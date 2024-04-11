@@ -5,6 +5,10 @@
   color: #fff;
   background-color: var(--blue);
 
+  @include mq-max('pc-lg') {
+    margin: 0 0 10rem;
+  }
+
   @include mq-min(md) {
     color: #000;
     background-color: var(--orange);
@@ -16,5 +20,9 @@
 
   @include mq-min(xl) {
     background-color: var(--purple);
+  }
+
+  @include mq-min('pc-lg') {
+    background-color: var(--green);
   }
 }

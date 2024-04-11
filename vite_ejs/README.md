@@ -1,9 +1,8 @@
 # Vite + EJS Template
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
-(Yarn だとパッケージのパスが通らずエラーでちゃうのよ...)
 
-(macOS 14.3.1 / node v18.19.0 / npm v10.5.0 検証済み)
+(macOS14.4.1 / node v21.6.2 / npm v10.5.0 / Yarn v4.1.1 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
@@ -14,13 +13,13 @@ Vite + ejs + Sass + Babel を使用したビルドツールのスターターキ
 プロジェクトのディレクトリに移動して実行
 
 ```
-$ npm install
+$ yarn install
 ```
 
 ## Vite の監視
 
 ```
-$ npm run dev
+$ yarn dev
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -28,7 +27,7 @@ $ npm run dev
 ファイル一式を生成
 
 ```
-$ npm run build
+$ yarn build
 ```
 
 ## ディレクトリ構成
@@ -56,6 +55,7 @@ $ npm run build
 │
 ├─ .eslintrc.js
 ├─ .jsbeautifyrc
+├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ package.json
 ├─ postcss.config.js
@@ -70,8 +70,8 @@ $ npm run build
 
 ```
 $ rm -rf node_modules
-$ npm cache clean --force
-$ npm install
+$ yarn cache clean --force
+$ yarn install
 ```
 
 ## 参考 <!-- Reference -->

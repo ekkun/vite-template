@@ -1,0 +1,25 @@
+extends ../_templates/_layout
+
+block vars
+  -
+    head.title = 'ABOUT'
+    head.slug = 'about'
+    head.keywords = ''
+    head.description = 'アバウトアスページなんです！'
+
+block append head
+
+block append style
+  link(rel='stylesheet', href=`${ filePath }assets/css/about.css`)
+
+block includes
+
+block main
+  main#main.main
+    .main__inner
+
+  //- アーティクル
+  article.about アバウトアスページなんです！
+
+block append scripts
+  script(src=`${ filePath }assets/js/about.js`)

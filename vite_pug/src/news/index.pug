@@ -2,15 +2,15 @@ extends ../_templates/_layout
 
 block vars
   -
-    head.title = 'CONTACT'
+    head.title = 'NEWS'
     head.slug = 'contact'
     head.keywords = ''
-    head.description = 'コンタクトページなんです！'
+    head.description = 'ニュースページなんです！'
 
 block append head
 
 block append style
-  link(rel='stylesheet', href=`${ filePath }assets/css/contact.css`)
+  link(rel='stylesheet', href=`${ filePath }assets/css/news.css`)
 
 block includes
 
@@ -18,10 +18,9 @@ block main
   main#main.main
     .main__inner
 
-
   //- アーティクル
-  article.contact コンタクトページなんです！
+  article.news ニュースページなんです！
 
 block append scripts
   //-
-    script(src=`${ filePath }assets/js/contact.js`)
+    script(src=`${ filePath }assets/js/news.js`)

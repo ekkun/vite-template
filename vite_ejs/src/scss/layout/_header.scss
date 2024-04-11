@@ -2,4 +2,25 @@
 @use '../global' as *;
 
 .header {
+  padding: 0;
+  color: #fff;
+  margin: 0;
+  background-color: var(--blue);
+
+  @include mq-min(md) {
+    color: #000;
+    background-color: var(--orange);
+  }
+
+  @include mq-min(tab) {
+    background-color: var(--gray);
+  }
+
+  @include mq-min(xl) {
+    background-color: var(--purple);
+  }
+
+  @include mq-min('pc-lg') {
+    background-color: var(--green);
+  }
 }
