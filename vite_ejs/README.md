@@ -2,11 +2,14 @@
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS14.4.1 / node v21.6.2 / npm v10.5.0 / Yarn v4.1.1 / 検証済み)
+(macOS14.4.1 / node v21.6.2 / Yarn v4.1.1 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
 - Babel -> js
+- png -> png, webp
+- jpg -> jpg, webp
+- svg -> minify
 
 ## npm パッケージをインストール
 
@@ -24,11 +27,22 @@ $ yarn dev
 
 ## 納品／アップロード用ファイル生成
 
-ファイル一式を生成
+公開用ファイル一式を生成
 
 ```
 $ yarn build
 ```
+
+## 画像最適化＆webp 化
+
+画像の画像最適化と webp 化を同時に実行します
+監視、公開用すべてのコマンドで実行します
+
+```
+$ yarn images
+```
+
+<span style="font-size: x-small;">※ 画像追加、修正時にこのコマンドを実行してください。</span>
 
 ## ディレクトリ構成
 
@@ -57,6 +71,7 @@ $ yarn build
 ├─ .jsbeautifyrc
 ├─ .yarnrc.yml
 ├─ babel.babelrc
+├─ convertImage.mjs
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md
@@ -66,7 +81,7 @@ $ yarn build
 
 ## 再インストール
 
-`npm` でエラーが出た場合は再インストールをしてください。
+`yarn` でエラーが出た場合は再インストールをしてください。
 
 ```
 $ rm -rf node_modules
