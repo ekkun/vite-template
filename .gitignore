@@ -11,3 +11,6 @@ sitemap.xml
 .yarn
 .pnp.cjs
 .pnp.loader.mjs
+
+/vite_sample/
+/vite_sass/

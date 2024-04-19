@@ -3,10 +3,10 @@ import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vitePluginPug from './plugins/vite-plugin-pug';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
+import removeComments from 'babel-plugin-remove-comments';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -76,6 +76,7 @@ export default defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
@@ -120,74 +121,14 @@ export default defineConfig({
         options: { pretty: true },
       },
     }),
+    removeComments({
+      plugins: ['babel-plugin-minify-remove-comments'],
+    }),
     babel({
       babelHelpers: 'runtime',
       exclude: ['node_modules/**'],
       presets: ['@babel/preset-env'],
       plugins: ['@babel/plugin-transform-runtime'],
-    }),
-    ViteImageOptimizer({
-      test: /\.(jpe?g|png|gif|tiff|webp|svg|avif)$/i,
-      //exclude: undefined,
-      //include: undefined,
-      includePublic: true,
-      logStats: true,
-      ansiColors: true,
-      //svg: {
-      //  multipass: true,
-      //  plugins: [
-      //    {
-      //      name: 'preset-default',
-      //      params: {
-      //        overrides: {
-      //          cleanupNumericValues: false,
-      //          removeViewBox: false, // https://github.com/svg/svgo/issues/1128
-      //        },
-      //        cleanupIDs: {
-      //          minify: false,
-      //          remove: false,
-      //        },
-      //        convertPathData: false,
-      //      },
-      //    },
-      //    'sortAttrs',
-      //    {
-      //      name: 'addAttributesToSVGElement',
-      //      params: {
-      //        attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }],
-      //      },
-      //    },
-      //  ],
-      //},
-      png: {
-        // https://sharp.pixelplumbing.com/api-output#png
-        quality: 80,
-      },
-      jpeg: {
-        // https://sharp.pixelplumbing.com/api-output#jpeg
-        quality: 80,
-      },
-      jpg: {
-        // https://sharp.pixelplumbing.com/api-output#jpeg
-        quality: 80,
-      },
-      tiff: {
-        // https://sharp.pixelplumbing.com/api-output#tiff
-        quality: 80,
-      },
-      // gif does not support lossless compression
-      // https://sharp.pixelplumbing.com/api-output#gif
-      gif: {},
-      webp: {
-        // https://sharp.pixelplumbing.com/api-output#webp
-        lossless: true,
-      },
-      avif: {
-        // https://sharp.pixelplumbing.com/api-output#avif
-        lossless: true,
-      },
-      cache: false,
-      //cacheLocation: undefined,
     }),
     crossorigin({}),
     generateBundle({}),

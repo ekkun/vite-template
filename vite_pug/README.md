@@ -7,6 +7,9 @@ Vite + Pug + Sass + Babel を使用したビルドツールのスターターキ
 - Pug -> html
 - Sass -> css
 - Babel -> js
+- png -> png, webp
+- jpg -> jpg, webp
+- svg -> minify
 
 ## npm パッケージをインストール
 
@@ -24,11 +27,22 @@ $ yarn dev
 
 ## 納品／アップロード用ファイル生成
 
-ファイル一式を生成
+公開用ファイル一式を生成
 
 ```
 $ yarn build
 ```
+
+## 画像最適化＆webp 化
+
+画像の画像最適化と webp 化を同時に実行します
+監視、公開用すべてのコマンドで実行します
+
+```
+$ yarn images
+```
+
+<span style="font-size: x-small;">※ 画像追加、修正時にこのコマンドを実行してください。</span>
 
 ## ディレクトリ構成
 
@@ -62,6 +76,7 @@ $ yarn build
 ├─ .jsbeautifyrc
 ├─ .yarnrc.yml
 ├─ babel.babelrc
+├─ convertImage.mjs
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md

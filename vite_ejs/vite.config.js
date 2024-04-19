@@ -78,6 +78,7 @@ export default defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
