@@ -4,7 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 //import handlebars from 'vite-plugin-handlebars';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
@@ -51,6 +50,20 @@ const generateBundle = () => {
           bundle[url].code = bundle[url].code.replace('crossOrigin=""', 'crossOrigin="use-credentials"');
         }
       }
+    },
+  };
+};
+
+const removeComments = () => {
+  return {
+    name: 'remove-comments',
+    transform(code, id) {
+      if (id.endsWith('.js')) {
+        code = code.replace(/\/\*![\s\S]*?\*\//g, '');
+      } else if (id.endsWith('.css') || id.endsWith('.scss') || id.endsWith('.sass')) {
+        code = code.replace(/\/\*![\s\S]*?\*\//g, '');
+      }
+      return code;
     },
   };
 };
@@ -162,70 +175,8 @@ export default defineConfig({
       presets: ['@babel/preset-env'],
       plugins: ['@babel/plugin-transform-runtime'],
     }),
-    ViteImageOptimizer({
-      test: /\.(jpe?g|png|gif|tiff|webp|svg|avif)$/i,
-      //exclude: undefined,
-      //include: undefined,
-      includePublic: true,
-      logStats: true,
-      ansiColors: true,
-      //svg: {
-      //  multipass: true,
-      //  plugins: [
-      //    {
-      //      name: 'preset-default',
-      //      params: {
-      //        overrides: {
-      //          cleanupNumericValues: false,
-      //          removeViewBox: false, // https://github.com/svg/svgo/issues/1128
-      //        },
-      //        cleanupIDs: {
-      //          minify: false,
-      //          remove: false,
-      //        },
-      //        convertPathData: false,
-      //      },
-      //    },
-      //    'sortAttrs',
-      //    {
-      //      name: 'addAttributesToSVGElement',
-      //      params: {
-      //        attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }],
-      //      },
-      //    },
-      //  ],
-      //},
-      png: {
-        // https://sharp.pixelplumbing.com/api-output#png
-        quality: 80,
-      },
-      jpeg: {
-        // https://sharp.pixelplumbing.com/api-output#jpeg
-        quality: 80,
-      },
-      jpg: {
-        // https://sharp.pixelplumbing.com/api-output#jpeg
-        quality: 80,
-      },
-      tiff: {
-        // https://sharp.pixelplumbing.com/api-output#tiff
-        quality: 80,
-      },
-      // gif does not support lossless compression
-      // https://sharp.pixelplumbing.com/api-output#gif
-      gif: {},
-      webp: {
-        // https://sharp.pixelplumbing.com/api-output#webp
-        lossless: true,
-      },
-      avif: {
-        // https://sharp.pixelplumbing.com/api-output#avif
-        lossless: true,
-      },
-      cache: false,
-      //cacheLocation: undefined,
-    }),
     crossorigin({}),
     generateBundle({}),
+    removeComments(),
   ],
 });

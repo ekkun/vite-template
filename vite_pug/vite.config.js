@@ -6,7 +6,6 @@ import vitePluginPug from './plugins/vite-plugin-pug';
 import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
-import removeComments from 'babel-plugin-remove-comments';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -49,6 +48,20 @@ const generateBundle = () => {
           bundle[url].code = bundle[url].code.replace('crossOrigin=""', 'crossOrigin="use-credentials"');
         }
       }
+    },
+  };
+};
+
+const removeComments = () => {
+  return {
+    name: 'remove-comments',
+    transform(code, id) {
+      if (id.endsWith('.js')) {
+        code = code.replace(/\/\*![\s\S]*?\*\//g, '');
+      } else if (id.endsWith('.css') || id.endsWith('.scss') || id.endsWith('.sass')) {
+        code = code.replace(/\/\*![\s\S]*?\*\//g, '');
+      }
+      return code;
     },
   };
 };
@@ -121,9 +134,6 @@ export default defineConfig({
         options: { pretty: true },
       },
     }),
-    removeComments({
-      plugins: ['babel-plugin-minify-remove-comments'],
-    }),
     babel({
       babelHelpers: 'runtime',
       exclude: ['node_modules/**'],
@@ -132,5 +142,6 @@ export default defineConfig({
     }),
     crossorigin({}),
     generateBundle({}),
+    removeComments(),
   ],
 });
