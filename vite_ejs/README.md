@@ -19,10 +19,47 @@ Vite + ejs + Sass + Babel を使用したビルドツールのスターターキ
 $ yarn install
 ```
 
+> [!WARNING]
+> Windows 環境の方は必読ください！
+
+### sharp のエラー解決方法
+
+`yarn install` でコケるハズです  
+そのため以下の設定をお願いします
+
+```
+$ yarn remove sharp
+$ yarn add --dev @img/sharp-win32-x64
+```
+
+参照: [sharp のエラー解決方法](https://qiita.com/taqumo/items/d1ccae13739e6627f7b5)
+
 ## Vite の監視
+
+監視開始
+ローカルサーバーが立ち上がり確認可能（[localhost:4000](http://localhost:4000)）  
+/dist/ には書き出されないので注意
+
+```
+$ yarn start
+```
+
+## 開発用ファイル生成
+
+開発用のファイル一式を生成
 
 ```
 $ yarn dev
+```
+
+## Vite のプレビュー
+
+公開用ファイルの確認
+ローカルサーバーが立ち上がり確認可能（[localhost:8080](http://localhost:8080)）  
+/dist/ には書き出されないので注意
+
+```
+$ yarn preview
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -31,6 +68,14 @@ $ yarn dev
 
 ```
 $ yarn build
+```
+
+## EJS 設定
+
+設定用の EJS に初期の値を入力してください
+
+```
+./src/_templates/_config.ejs
 ```
 
 ## 画像最適化＆webp 化
@@ -43,6 +88,20 @@ $ yarn images
 ```
 
 <span style="font-size: x-small;">※ 画像追加、修正時にこのコマンドを実行してください。</span>
+
+### 設定変更
+
+各種設定 package.json の script に記載されています
+
+- 画像が出力されるディレクトリを変更する場合はパスを変更してください
+- webp 化の際に png, jpeg など元ファイルを出力しない場合はオプション `-m` を外してください
+- webp 化を行わない場合はオプション `-w` を外してください
+
+```JSON
+"scripts": {
+  "images": "node convertImage.mjs -i ./src/public/assets/images -o ./dist/assets/images -m -w -t -v",
+}
+```
 
 ## ディレクトリ構成
 
@@ -67,11 +126,13 @@ $ yarn images
 │  ├─ scss/
 │  └─ index.html
 │
-├─ .eslintrc.js
 ├─ .jsbeautifyrc
+├─ .markuplintrc
 ├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs
+├─ eslint.config.mjs
+├─ htmlBeautify.mjs
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md
@@ -91,5 +152,6 @@ $ yarn install
 
 ## 参考 <!-- Reference -->
 
+- [Viteで開発環境構築〜Pug・Sass・JS〜](https://yuito-blog.com/vite-develop/)
 - [Vite と Docker にてシンプルな HTML(EJS)/CSS(Sass)/JS コーディング環境を構築する方法](https://qiita.com/soundweaver/items/78bd6a62263c397f43f5)
 - [【詳細版】Vite でコーダーのコーディング環境（HTML（ejs ライク：ハンドルバー化）・Sass・JS）を作る](https://coding-memo.work/development/1274/)
