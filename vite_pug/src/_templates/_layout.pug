@@ -1,18 +1,29 @@
 //- 変数初期設定
 -
-  var site = {}
+  const site = {}
   site.title = 'サンプルウェブサイト'
   site.keywords = ''
   site.description = ''
-  site.URL = ''
+  //-site.URL = ''
 
-  var head = {}
+  if (process.env.NODE_ENV === 'production') {
+    site.URL = 'https://production.com'
+    site.path = '/'
+  } else if (process.env.NODE_ENV === 'development') {
+    site.URL = 'https://development.com'
+    site.path = '/'
+  } else {
+    site.URL = 'http://localhost:4000'
+    site.path = '/'
+  }
+
+  const head = {}
   head.title = 'SAMPLE'
   head.slug = ''
   head.keywords    = ''
   head.description = ''
 
-  var filePath = '/'
+  const filePath = '/'
 
 //- 変数読み込み
 block vars
