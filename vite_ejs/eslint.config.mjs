@@ -15,22 +15,22 @@ const jsRules = {
     'error',
     'always',
     {
-      omitLastInOneLineBlock: false,
-    },
+      omitLastInOneLineBlock: false
+    }
   ],
-  quotes: [0, 'single', { avoidEscape: true }],
+  //quotes: [0, 'single', { avoidEscape: true }],
   'no-extra-semi': 'warn',
   'no-undef': 'warn',
   'space-before-blocks': [
     'warn',
     {
-      functions: 'always',
-    },
+      functions: 'always'
+    }
   ],
   'import/no-amd': 'off',
   'import/newline-after-import': 'off',
   'import/no-named-as-default': 'off',
-  'import/no-named-as-default-member': 'off',
+  'import/no-named-as-default-member': 'off'
 };
 
 const tsRules = {
@@ -40,14 +40,14 @@ const tsRules = {
 export default [
   {
     files: ['**/*.js'],
-    ignores: ['**/fixtures/**', '**/dist/**'],
+    ignores: ['**/fixtures/**', '**/dist/**']
   },
   js.configs.recommended,
   eslintConfigPrettier,
   ...compat.extends('eslint-config-airbnb-base', 'prettier'),
   {
     plugins: {
-      prettier,
+      prettier
     },
     languageOptions: {
       globals: {
@@ -55,16 +55,16 @@ export default [
         ...globals.jquery,
         ...globals.node,
         ...globals.es6,
-        ...globals.es2021,
+        ...globals.es2021
       },
       parserOptions: {
-        sourceType: 'module',
-      },
+        sourceType: 'module'
+      }
     },
     rules: {
-      ...jsRules,
-    },
-  },
+      ...jsRules
+    }
+  }
   //{
   //  files: ['/**/*.ts', '/**/*.tsx'],
   //  languageOptions: {

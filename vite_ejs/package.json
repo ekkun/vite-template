@@ -3,7 +3,7 @@
   "description": "Vite + ejs + Sass + Babel",
   "version": "1.2.0",
   "keywords": [
-    "Vite"
+    "Vite",
     "ejs",
     "scss",
     "babel"
