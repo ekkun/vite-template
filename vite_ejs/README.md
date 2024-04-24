@@ -128,6 +128,7 @@ $ yarn images
 │
 ├─ .jsbeautifyrc
 ├─ .markuplintrc
+├─ .prettierrc.json
 ├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs
