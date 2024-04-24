@@ -9,6 +9,7 @@ import babel from '@rollup/plugin-babel';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
+const isPreview = process.env.NODE_ENV === 'preview';
 
 if (isProduction) {
   console.info('ビルド環境');
@@ -16,6 +17,10 @@ if (isProduction) {
 
 if (isDevelopment) {
   console.info('開発環境');
+}
+
+if (isPreview) {
+  console.info('監視中');
 }
 
 const inputPugArray = globSync(['src/**/*.pug'], { ignore: ['src/**/_*.pug', 'node_modules/**'] }).map((file) => {
@@ -36,7 +41,7 @@ const crossorigin = () => {
     name: 'crossorigin',
     transformIndexHtml(html) {
       return html.replace(/crossorigin/g, `crossorigin="use-credentials"`);
-    },
+    }
   };
 };
 
@@ -48,7 +53,7 @@ const generateBundle = () => {
           bundle[url].code = bundle[url].code.replace('crossOrigin=""', 'crossOrigin="use-credentials"');
         }
       }
-    },
+    }
   };
 };
 
@@ -62,7 +67,7 @@ const removeComments = () => {
         code = code.replace(/\/\*![\s\S]*?\*\//g, '');
       }
       return code;
-    },
+    }
   };
 };
 
@@ -73,8 +78,17 @@ export default defineConfig({
     //open: '/index.html',
     strictPort: true,
     watch: {
-      usePolling: true,
-    },
+      usePolling: true
+    }
+  },
+
+  preview: {
+    port: 8080,
+    host: true,
+    strictPort: true,
+    watch: {
+      usePolling: true
+    }
   },
 
   base: isProduction ? '/' : '/',
@@ -83,7 +97,7 @@ export default defineConfig({
   root: path.resolve(__dirname, './src'),
 
   css: {
-    devSourcemap: true, // this one
+    devSourcemap: true // this one
   },
 
   build: {
@@ -115,11 +129,11 @@ export default defineConfig({
         //chunkFileNames: `assets/js/[name].js`,
         //entryFileNames: `assets/js/[name].js`,
         chunkFileNames: `assets/js/[name].js`,
-        entryFileNames: `assets/js/[name].js`,
+        entryFileNames: `assets/js/[name].js`
       },
       // 生成オブジェクトを渡す
-      input: inputObject,
-    },
+      input: inputObject
+    }
   },
 
   plugins: [
@@ -127,21 +141,21 @@ export default defineConfig({
     vitePluginPug({
       build: {
         locals: { hoge: 'hoge' },
-        options: { pretty: true },
+        options: { pretty: true }
       },
       serve: {
         locals: { hoge: 'hoge' },
-        options: { pretty: true },
-      },
+        options: { pretty: true }
+      }
     }),
     babel({
       babelHelpers: 'runtime',
       exclude: ['node_modules/**'],
       presets: ['@babel/preset-env'],
-      plugins: ['@babel/plugin-transform-runtime'],
+      plugins: ['@babel/plugin-transform-runtime']
     }),
     crossorigin({}),
     generateBundle({}),
-    removeComments(),
-  ],
+    removeComments()
+  ]
 });
