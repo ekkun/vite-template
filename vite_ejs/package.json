@@ -77,7 +77,7 @@
   "comments": {
     "eslint-plugin-react": "^7.34.1",
     "": "",
-    "npm-check-updates": "$ yarn ncu, $ yarn ncu -u --target patch",
+    "npm-check-updates": "$ yarn ncu, $ yarn ncu --upgrade --target minor, $ yarn ncu -u --target patch",
     "yarn": "yarn cache clean"
   }
 }

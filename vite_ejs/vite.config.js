@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-//import handlebars from 'vite-plugin-handlebars';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
@@ -155,26 +154,7 @@ export default defineConfig({
   },
 
   plugins: [
-    //handlebars({
-    //  partialDirectory: path.resolve(__dirname, '_templates'),
-    //}),
     liveReload(['_templates/**/*.ejs']),
-    //ViteEjsPlugin(JSON),
-    /*ViteEjsPlugin((viteConfig) => {
-      return (
-        {
-          root: viteConfig.root,
-          domain: 'example.com',
-          title: 'My vue project!',
-        },
-        {
-          ejs: {
-            beautify: true,
-            views: [viteConfig.publicDir],
-          },
-        }
-      );
-    }),*/
     ViteEjsPlugin({
       //extension: '.html',
       //layout: path.resolve(__dirname, '../src/__index.html'),
