@@ -27,8 +27,9 @@ $ yarn install
 `yarn install` でコケるハズです  
 そのため以下の設定をお願いします
 
+[package.json: 61行目を削除](https://github.com/ekkun/vite-template/blob/main/vite_ejs/package.json#L61)
+
 ```
-$ yarn remove sharp
 $ yarn add --dev @img/sharp-win32-x64
 ```
 
