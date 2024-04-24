@@ -4,8 +4,8 @@
     page: 'home',
     title: 'HOME｜サイト名',
     description: 'ここにHOMEのディスクリプションが入ります',
-    canonical: 'https://prod.com/',
-    ogp: 'https://prod.com/assets/images/ogp.png',
+    canonical: '/',
+    ogp: '/assets/images/ogp.png',
     stylePath: './scss/',
     scriptPath: './js/',
     imgPath: '/images/',
@@ -19,10 +19,13 @@
   };
 _%>
 <%- include('./_templates/_head.ejs', { domain, path, dir, meta: meta, structured }); %>
+
+<div><%= environment %></div>
+<div><%= meta.title %></div>
+<div><%= meta.description %></div>
+
 <%- include('./_templates/_header.ejs', { domain, path, dir, meta: meta }); %>
 <%- include('./_templates/_home.ejs', { domain, path, dir, meta: meta }); %>
-
-<div><%- data.title %></div>
 
 <figure style="text-align: center;">
   <img src="./public/assets/images/logo-with-shadow.png" alt="Vite" width="200">

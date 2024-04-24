@@ -8,16 +8,24 @@ import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
 
-const env = process.env.NODE_ENV;
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
+const isPreview = process.env.NODE_ENV === 'preview';
+let environment;
 
 if (isProduction) {
   console.info('ビルド環境');
+  environment = 'production';
 }
 
 if (isDevelopment) {
   console.info('開発環境');
+  environment = 'development';
+}
+
+if (isPreview) {
+  console.info('監視中');
+  environment = 'preview';
 }
 
 const inputHtmlArray = globSync(['src/**/*.html'], { ignore: ['node_modules/**'] }).map((file) => {
@@ -73,6 +81,15 @@ export default defineConfig({
     port: 4000,
     host: true,
     //open: '/index.html',
+    strictPort: true,
+    watch: {
+      usePolling: true,
+    },
+  },
+
+  preview: {
+    port: 8080,
+    host: true,
     strictPort: true,
     watch: {
       usePolling: true,
@@ -159,14 +176,16 @@ export default defineConfig({
       );
     }),*/
     ViteEjsPlugin({
-      extension: '.html',
+      //extension: '.html',
       //layout: path.resolve(__dirname, '../src/__index.html'),
       //excludeFn: excludePrivate,
-      data: {
-        title: 'TITLE',
-      },
+      //data: {},
+      root: './',
+      environment: environment,
+      title: 'TITLE',
       ejs: {
-        minify: true,
+        //minify: true,
+        beautify: true,
       },
     }),
     babel({
