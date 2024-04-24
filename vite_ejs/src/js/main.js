@@ -2,4 +2,4 @@
  * main.js
  */
 
-import './component/test.js';
+import './component/test';
