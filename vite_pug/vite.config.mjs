@@ -10,16 +10,18 @@ import babel from '@rollup/plugin-babel';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isPreview = process.env.NODE_ENV === 'preview';
+const isWatch = process.env.NODE_ENV === 'watch';
 
 if (isProduction) {
   console.info('ビルド環境');
 }
-
 if (isDevelopment) {
   console.info('開発環境');
 }
-
 if (isPreview) {
+  console.info('プレビュー');
+}
+if (isWatch) {
   console.info('監視中');
 }
 
@@ -103,6 +105,8 @@ export default defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    modulePreload: { polyfill: false },
+    polyfillModulePreload: false,
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {

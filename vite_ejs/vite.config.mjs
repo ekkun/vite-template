@@ -10,21 +10,24 @@ import babel from '@rollup/plugin-babel';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isPreview = process.env.NODE_ENV === 'preview';
+const isWatch = process.env.NODE_ENV === 'watch';
 let environment;
 
 if (isProduction) {
   console.info('ビルド環境');
   environment = 'production';
 }
-
 if (isDevelopment) {
   console.info('開発環境');
   environment = 'development';
 }
-
 if (isPreview) {
-  console.info('監視中');
+  console.info('プレビュー');
   environment = 'preview';
+}
+if (isWatch) {
+  console.info('監視中');
+  environment = 'watch';
 }
 
 const inputHtmlArray = globSync(['src/**/*.html'], { ignore: ['node_modules/**'] }).map((file) => {
@@ -45,7 +48,7 @@ const crossorigin = () => {
     name: 'crossorigin',
     transformIndexHtml(html) {
       return html.replace(/crossorigin/g, `crossorigin="use-credentials"`);
-    },
+    }
   };
 };
 
@@ -57,7 +60,7 @@ const generateBundle = () => {
           bundle[url].code = bundle[url].code.replace('crossOrigin=""', 'crossOrigin="use-credentials"');
         }
       }
-    },
+    }
   };
 };
 
@@ -71,7 +74,7 @@ const removeComments = () => {
         code = code.replace(/\/\*![\s\S]*?\*\//g, '');
       }
       return code;
-    },
+    }
   };
 };
 
@@ -82,8 +85,8 @@ export default defineConfig({
     //open: '/index.html',
     strictPort: true,
     watch: {
-      usePolling: true,
-    },
+      usePolling: true
+    }
   },
 
   preview: {
@@ -91,8 +94,8 @@ export default defineConfig({
     host: true,
     strictPort: true,
     watch: {
-      usePolling: true,
-    },
+      usePolling: true
+    }
   },
 
   base: isProduction ? '/' : '/',
@@ -101,12 +104,14 @@ export default defineConfig({
   root: path.resolve(__dirname, './src'),
 
   css: {
-    devSourcemap: true, // this one
+    devSourcemap: true // this one
   },
 
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    modulePreload: { polyfill: false },
+    polyfillModulePreload: false,
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {
@@ -133,10 +138,10 @@ export default defineConfig({
         //chunkFileNames: `assets/js/[name].js`,
         //entryFileNames: `assets/js/[name].js`,
         chunkFileNames: `assets/js/[name].js`,
-        entryFileNames: `assets/js/[name].js`,
+        entryFileNames: `assets/js/[name].js`
       },
       // 生成オブジェクトを渡す
-      input: inputObject,
+      input: inputObject
     },
     html: {
       minify: true,
@@ -146,11 +151,11 @@ export default defineConfig({
         excludeAssets: [],
         attrs: {
           link: {
-            crossorigin: undefined,
-          },
-        },
-      },
-    },
+            crossorigin: undefined
+          }
+        }
+      }
+    }
   },
 
   plugins: [
@@ -165,17 +170,17 @@ export default defineConfig({
       title: 'TITLE',
       ejs: {
         //minify: true,
-        beautify: true,
-      },
+        beautify: true
+      }
     }),
     babel({
       babelHelpers: 'runtime',
       exclude: ['node_modules/**'],
       presets: ['@babel/preset-env'],
-      plugins: ['@babel/plugin-transform-runtime'],
+      plugins: ['@babel/plugin-transform-runtime']
     }),
     crossorigin({}),
     generateBundle({}),
-    removeComments(),
-  ],
+    removeComments()
+  ]
 });

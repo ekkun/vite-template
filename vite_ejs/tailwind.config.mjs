@@ -1,5 +1,5 @@
-module.exports = {
+export default {
   content: ['./src/**/*.{html,js,ejs}'],
   theme: {},
-  plugins: [],
+  plugins: []
 };
