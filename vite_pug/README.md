@@ -27,10 +27,19 @@ $ yarn install
 `yarn install` でコケるハズです  
 そのため以下の設定をお願いします
 
+<!--
 [package.json: 61 行目を削除](https://github.com/ekkun/vite-template/blob/main/vite_pug/package.json#L61)
 
 ```
 $ yarn add --dev @img/sharp-win32-x64
+```
+-->
+
+[convertImage.mjs: 14行目をコメントアウト、15行目をコメント削除](https://github.com/ekkun/vite-template/blob/main/vite_pug/convertImage.mjs#L14-L15)
+
+```JavaScript
+//import sharp from 'sharp';
+import sharp from '@img/sharp-win32-x64';
 ```
 
 参照: [sharp のエラー解決方法](https://qiita.com/taqumo/items/d1ccae13739e6627f7b5)
@@ -150,7 +159,7 @@ $ yarn images
 
 ```
 $ rm -rf node_modules
-$ yarn cache clean --force
+$ yarn cache clean
 $ yarn install
 ```
 

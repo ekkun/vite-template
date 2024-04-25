@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { ViteEjsPlugin } from 'vite-plugin-ejs';
+import vitePluginPug from './plugins/vite-plugin-pug';
 import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
@@ -10,24 +10,22 @@ import babel from '@rollup/plugin-babel';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isPreview = process.env.NODE_ENV === 'preview';
-let environment;
+const isWatch = process.env.NODE_ENV === 'watch';
 
 if (isProduction) {
   console.info('ビルド環境');
-  environment = 'production';
 }
-
 if (isDevelopment) {
   console.info('開発環境');
-  environment = 'development';
 }
-
 if (isPreview) {
+  console.info('プレビュー');
+}
+if (isWatch) {
   console.info('監視中');
-  environment = 'preview';
 }
 
-const inputHtmlArray = globSync(['src/**/*.html'], { ignore: ['node_modules/**'] }).map((file) => {
+const inputPugArray = globSync(['src/**/*.pug'], { ignore: ['src/**/_*.pug', 'node_modules/**'] }).map((file) => {
   return [path.relative('src', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
 });
 const inputScssArray = globSync('src/scss/*.scss', { ignore: ['src/scss/**/_*.scss', 'node_modules/**'] }).map((file) => {
@@ -36,7 +34,7 @@ const inputScssArray = globSync('src/scss/*.scss', { ignore: ['src/scss/**/_*.sc
 const inputJsArray = globSync('src/js/*.js', { ignore: ['src/js/component/**', 'node_modules/**', '**/modules/**', '**/html/**'] }).map((file) => {
   return [path.relative('src/js', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
 });
-const inputObject = Object.fromEntries(inputJsArray.concat(inputHtmlArray, inputScssArray));
+const inputObject = Object.fromEntries(inputJsArray.concat(inputPugArray, inputScssArray));
 console.info(inputObject);
 //console.info(path.resolve(__dirname, '../src'));
 
@@ -45,7 +43,7 @@ const crossorigin = () => {
     name: 'crossorigin',
     transformIndexHtml(html) {
       return html.replace(/crossorigin/g, `crossorigin="use-credentials"`);
-    },
+    }
   };
 };
 
@@ -57,7 +55,7 @@ const generateBundle = () => {
           bundle[url].code = bundle[url].code.replace('crossOrigin=""', 'crossOrigin="use-credentials"');
         }
       }
-    },
+    }
   };
 };
 
@@ -71,7 +69,7 @@ const removeComments = () => {
         code = code.replace(/\/\*![\s\S]*?\*\//g, '');
       }
       return code;
-    },
+    }
   };
 };
 
@@ -82,8 +80,8 @@ export default defineConfig({
     //open: '/index.html',
     strictPort: true,
     watch: {
-      usePolling: true,
-    },
+      usePolling: true
+    }
   },
 
   preview: {
@@ -91,8 +89,8 @@ export default defineConfig({
     host: true,
     strictPort: true,
     watch: {
-      usePolling: true,
-    },
+      usePolling: true
+    }
   },
 
   base: isProduction ? '/' : '/',
@@ -101,12 +99,14 @@ export default defineConfig({
   root: path.resolve(__dirname, './src'),
 
   css: {
-    devSourcemap: true, // this one
+    devSourcemap: true // this one
   },
 
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    modulePreload: { polyfill: false },
+    polyfillModulePreload: false,
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {
@@ -120,10 +120,10 @@ export default defineConfig({
             return 'assets/images/[name].[ext]';
           }
           // ビルド時のCSS名を明記してコントロールする
-          if (extType === 'css') {
+          /*if (extType === 'css') {
             //return `assets/css/style.css`;
             return 'assets/css/[name].css';
-          }
+          }*/
           if (/\.css$/.test(assetInfo.name)) {
             return 'assets/css/[name].[ext]';
           }
@@ -133,49 +133,33 @@ export default defineConfig({
         //chunkFileNames: `assets/js/[name].js`,
         //entryFileNames: `assets/js/[name].js`,
         chunkFileNames: `assets/js/[name].js`,
-        entryFileNames: `assets/js/[name].js`,
+        entryFileNames: `assets/js/[name].js`
       },
       // 生成オブジェクトを渡す
-      input: inputObject,
-    },
-    html: {
-      minify: true,
-      inject: {
-        injectTo: 'body',
-        exclude: [],
-        excludeAssets: [],
-        attrs: {
-          link: {
-            crossorigin: undefined,
-          },
-        },
-      },
-    },
+      input: inputObject
+    }
   },
 
   plugins: [
-    liveReload(['_templates/**/*.ejs']),
-    ViteEjsPlugin({
-      //extension: '.html',
-      //layout: path.resolve(__dirname, '../src/__index.html'),
-      //excludeFn: excludePrivate,
-      //data: {},
-      root: './',
-      environment: environment,
-      title: 'TITLE',
-      ejs: {
-        //minify: true,
-        beautify: true,
+    liveReload(['src/**/*.pug']),
+    vitePluginPug({
+      build: {
+        locals: { hoge: 'hoge' },
+        options: { pretty: true }
       },
+      serve: {
+        locals: { hoge: 'hoge' },
+        options: { pretty: true }
+      }
     }),
     babel({
       babelHelpers: 'runtime',
       exclude: ['node_modules/**'],
       presets: ['@babel/preset-env'],
-      plugins: ['@babel/plugin-transform-runtime'],
+      plugins: ['@babel/plugin-transform-runtime']
     }),
     crossorigin({}),
     generateBundle({}),
-    removeComments(),
-  ],
+    removeComments()
+  ]
 });

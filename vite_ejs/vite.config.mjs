@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import vitePluginPug from './plugins/vite-plugin-pug';
+import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import liveReload from 'vite-plugin-live-reload';
 //import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
@@ -10,20 +10,27 @@ import babel from '@rollup/plugin-babel';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isPreview = process.env.NODE_ENV === 'preview';
+const isWatch = process.env.NODE_ENV === 'watch';
+let environment;
 
 if (isProduction) {
   console.info('ビルド環境');
+  environment = 'production';
 }
-
 if (isDevelopment) {
   console.info('開発環境');
+  environment = 'development';
 }
-
 if (isPreview) {
+  console.info('プレビュー');
+  environment = 'preview';
+}
+if (isWatch) {
   console.info('監視中');
+  environment = 'watch';
 }
 
-const inputPugArray = globSync(['src/**/*.pug'], { ignore: ['src/**/_*.pug', 'node_modules/**'] }).map((file) => {
+const inputHtmlArray = globSync(['src/**/*.html'], { ignore: ['node_modules/**'] }).map((file) => {
   return [path.relative('src', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
 });
 const inputScssArray = globSync('src/scss/*.scss', { ignore: ['src/scss/**/_*.scss', 'node_modules/**'] }).map((file) => {
@@ -32,7 +39,7 @@ const inputScssArray = globSync('src/scss/*.scss', { ignore: ['src/scss/**/_*.sc
 const inputJsArray = globSync('src/js/*.js', { ignore: ['src/js/component/**', 'node_modules/**', '**/modules/**', '**/html/**'] }).map((file) => {
   return [path.relative('src/js', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
 });
-const inputObject = Object.fromEntries(inputJsArray.concat(inputPugArray, inputScssArray));
+const inputObject = Object.fromEntries(inputJsArray.concat(inputHtmlArray, inputScssArray));
 console.info(inputObject);
 //console.info(path.resolve(__dirname, '../src'));
 
@@ -103,6 +110,8 @@ export default defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    modulePreload: { polyfill: false },
+    polyfillModulePreload: false,
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {
@@ -116,10 +125,10 @@ export default defineConfig({
             return 'assets/images/[name].[ext]';
           }
           // ビルド時のCSS名を明記してコントロールする
-          /*if (extType === 'css') {
+          if (extType === 'css') {
             //return `assets/css/style.css`;
             return 'assets/css/[name].css';
-          }*/
+          }
           if (/\.css$/.test(assetInfo.name)) {
             return 'assets/css/[name].[ext]';
           }
@@ -133,19 +142,35 @@ export default defineConfig({
       },
       // 生成オブジェクトを渡す
       input: inputObject
+    },
+    html: {
+      minify: true,
+      inject: {
+        injectTo: 'body',
+        exclude: [],
+        excludeAssets: [],
+        attrs: {
+          link: {
+            crossorigin: undefined
+          }
+        }
+      }
     }
   },
 
   plugins: [
-    liveReload(['src/**/*.pug']),
-    vitePluginPug({
-      build: {
-        locals: { hoge: 'hoge' },
-        options: { pretty: true }
-      },
-      serve: {
-        locals: { hoge: 'hoge' },
-        options: { pretty: true }
+    liveReload(['_templates/**/*.ejs']),
+    ViteEjsPlugin({
+      //extension: '.html',
+      //layout: path.resolve(__dirname, '../src/__index.html'),
+      //excludeFn: excludePrivate,
+      //data: {},
+      root: './',
+      environment: environment,
+      title: 'TITLE',
+      ejs: {
+        //minify: true,
+        beautify: true
       }
     }),
     babel({

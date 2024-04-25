@@ -1,7 +1,7 @@
 {
   "name": "vite_ejs_template",
   "description": "Vite + ejs + Sass + Babel",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords": [
     "Vite",
     "ejs",
@@ -11,7 +11,7 @@
   "author": "eiji@design24c.com",
   "license": "(c) Design24C",
   "scripts": {
-    "start": "yarn images && yarn lint && cross-env NODE_ENV=preview vite",
+    "start": "yarn images && yarn lint && cross-env NODE_ENV=watch vite",
     "preview": "yarn images && yarn lint && cross-env NODE_ENV=production vite preview",
     "dev": "rm -rf dist && cross-env NODE_ENV=development vite build && yarn html && yarn images",
     "build": "rm -rf dist && cross-env NODE_ENV=production vite build && yarn html && yarn images",
@@ -31,6 +31,7 @@
     "@babel/preset-env": "^7.24.4",
     "@babel/runtime": "^7.24.4",
     "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@img/sharp-win32-x64": "^0.33.3",
     "@markuplint/ejs-parser": "^4.5.1",
     "@rollup/plugin-babel": "^6.0.4",
     "autoprefixer": "^10.4.19",
