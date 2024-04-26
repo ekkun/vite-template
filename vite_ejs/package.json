@@ -19,6 +19,7 @@
     "html": "yarn html:lint && node htmlBeautify.mjs",
     "html:lint": "markuplint \"src/**/{*.ejs,*.html}\"",
     "style:lint": "",
+    "style:media": "node mediaQueries.mjs",
     "es:lint": "eslint \"src/**/*.js\"",
     "lint": "yarn es:lint --fix && yarn html:lint",
     "images": "node convertImage.mjs -i ./src/public/assets/images -o ./dist/assets/images -m -w -t -v",
