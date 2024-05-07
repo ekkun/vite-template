@@ -4,7 +4,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   {
-    files: ['**/*.js'],
+    files: ['**/*.js']
   },
   js.configs.recommended,
   eslintConfigPrettier,
@@ -15,15 +15,16 @@ export default [
         ...globals.jquery,
         ...globals.node,
         ...globals.es6,
-        ...globals.es2021,
+        ...globals.es2021
       },
       parserOptions: {
-        sourceType: 'module',
-      },
+        sourceType: 'module'
+      }
     },
     rules: {
       'prefer-const': 'error',
-      'no-console': ['error', { allow: ['warn', 'error'] }],
-    },
-  },
+      //'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-console': 'off'
+    }
+  }
 ];
