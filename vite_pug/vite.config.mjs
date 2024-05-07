@@ -4,7 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vitePluginPug from './plugins/vite-plugin-pug';
 import liveReload from 'vite-plugin-live-reload';
-//import JSON from './src/_templates/data.json';
 import babel from '@rollup/plugin-babel';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -36,7 +35,6 @@ const inputJsArray = globSync('src/js/*.js', { ignore: ['src/js/component/**', '
 });
 const inputObject = Object.fromEntries(inputJsArray.concat(inputPugArray, inputScssArray));
 console.info(inputObject);
-//console.info(path.resolve(__dirname, '../src'));
 
 const crossorigin = () => {
   return {
@@ -95,11 +93,10 @@ export default defineConfig({
 
   base: isProduction ? '/' : '/',
 
-  //root: './src',
   root: path.resolve(__dirname, './src'),
 
   css: {
-    devSourcemap: true // this one
+    devSourcemap: true
   },
 
   build: {
@@ -116,26 +113,19 @@ export default defineConfig({
             extType = 'fonts';
           }
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            //extType = 'images';
             return 'assets/images/[name].[ext]';
           }
-          // ビルド時のCSS名を明記してコントロールする
-          /*if (extType === 'css') {
-            //return `assets/css/style.css`;
+          if (extType === 'css') {
             return 'assets/css/[name].css';
-          }*/
+          }
           if (/\.css$/.test(assetInfo.name)) {
             return 'assets/css/[name].[ext]';
           }
-          //return `assets/${extType}/[name][extname]`;
           return 'assets/[name].[ext]';
         },
-        //chunkFileNames: `assets/js/[name].js`,
-        //entryFileNames: `assets/js/[name].js`,
         chunkFileNames: `assets/js/[name].js`,
         entryFileNames: `assets/js/[name].js`
       },
-      // 生成オブジェクトを渡す
       input: inputObject
     }
   },
