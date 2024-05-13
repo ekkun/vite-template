@@ -103,7 +103,6 @@ export default defineConfig({
     outDir: '../dist',
     emptyOutDir: true,
     modulePreload: { polyfill: false },
-    polyfillModulePreload: false,
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {
