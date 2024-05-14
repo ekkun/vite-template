@@ -14,7 +14,7 @@
     "start": "yarn images && yarn lint && cross-env NODE_ENV=watch vite",
     "preview": "yarn images && yarn lint && cross-env NODE_ENV=production vite preview",
     "dev": "yarn clean && cross-env NODE_ENV=development vite build && yarn html && yarn images",
-    "build": "yarn clean && cross-env NODE_ENV=production vite build && yarn html && yarn images",
+    "build": "yarn clean && cross-env NODE_ENV=production vite build && yarn html && yarn images && yarn style:media",
     "deploy": "",
     "html": "node htmlBeautify.mjs",
     "html:lint": "markuplint \"src/**/{*.ejs,*.html}\"",

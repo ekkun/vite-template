@@ -149,6 +149,7 @@ $ yarn images
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md
+├─ svgo.config.js
 ├─ tailwind.config.js
 └─ vite.config.js
 ```

@@ -2,17 +2,21 @@ import postcss from 'postcss';
 import fs from 'fs-extra';
 import path from 'path';
 
-const modifyMediaQueries = postcss.plugin('modify-media-queries', () => {
-  return (root) => {
-    root.walkAtRules('media', (rule) => {
-      const params = rule.params;
-      if (!params.includes('print, screen and (')) {
-        const newParams = params.replace(/screen\s+and\s+\(/g, 'print, screen and (');
-        rule.params = newParams;
+const modifyMediaQueries = () => {
+  return {
+    postcssPlugin: 'modify-media-queries',
+    AtRule: {
+      media: (atRule) => {
+        const params = atRule.params;
+        if (!params.includes('print, screen and (')) {
+          const newParams = params.replace(/screen\s+and\s+\(/g, 'print, screen and (');
+          atRule.params = newParams;
+        }
       }
-    });
+    }
   };
-});
+};
+modifyMediaQueries.postcss = true;
 
 const inputDir = './dist/assets/css';
 
