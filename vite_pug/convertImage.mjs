@@ -60,7 +60,7 @@ const ENCODER_OPTIONS = {
       lossless: true
     },
     jpg: {
-      quality: 70
+      quality: 80
     }
   }
 };
