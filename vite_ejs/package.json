@@ -24,7 +24,7 @@
     "lint": "yarn es:lint --fix",
     "images:build": "node convertImage.mjs -i ./src/images -o ./dist/assets/images -m -w -t -v",
     "images:start": "node convertImage.mjs -i ./src/images -o ./src/public/assets/images -m -w -t -v",
-    "images:start_": "node convertImage.mjs -i ./src/images -o ./.temp/public/assets/images -m -w -t -v",
+    "images:start_": "node convertImage.mjs -i ./src/images -o ./.yarn/temp/public/assets/images -m -w -t -v",
     "ln": "node createSymlink.mjs",
     "clean": "rimraf dist"
   },

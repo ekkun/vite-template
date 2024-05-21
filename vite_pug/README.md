@@ -127,10 +127,8 @@ $ yarn images
 ## ディレクトリ構成
 
 ```
-├─ .temp/
-│  └─ public/assets/images (監視時の画像ファイル一式がコピーされます)
-│
 ├─ .yarn/
+│  └─ temp/public/assets/images (監視時の画像ファイル一式がコピーされます)
 │
 ├─ dist/ (ビルド後、納品ファイルがここに生成されます)
 │  ├─ assets/

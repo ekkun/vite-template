@@ -13,7 +13,7 @@ function createSymlink(target, linkPath) {
 }
 
 // 実行するパスを指定
-const targetPath = '../../../.temp/public/assets/images';
+const targetPath = '../../../.yarn/temp/public/assets/images';
 const linkPath = 'src/public/assets/images';
 
 // ディレクトリが存在しない場合は作成
