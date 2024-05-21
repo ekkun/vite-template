@@ -72,6 +72,8 @@ const removeComments = () => {
 };
 
 export default defineConfig({
+  appType: 'spa',
+
   server: {
     port: 4000,
     host: true,
@@ -107,13 +109,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.')[1];
+          let extType = assetInfo.name.split('.').pop();
           if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
             extType = 'fonts';
           }
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            return 'assets/images/[name].[ext]';
-          }
+          //if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
+          //  return 'assets/images/[name].[ext]';
+          //}
           if (extType === 'css') {
             return 'assets/css/[name].css';
           }

@@ -109,15 +109,15 @@ $ yarn images
 
 ```JSON
 "scripts": {
-  "images": "node convertImage.mjs -i ./src/public/assets/images -o ./dist/assets/images -m -w -t -v",
+  "images:build": "node convertImage.mjs -i ./src/public/assets/images -o ./dist/assets/images -m -v -t",
+  "images:webp": "node convertImage.mjs -i ./src/public/assets/images -o ./src/public/assets/images -w",
 }
 ```
 
 ## ディレクトリ構成
 
 ```
-├─ node_modules/
-│  └─ パッケージ各種
+├─ .yarn/
 │
 ├─ dist/ (ビルド後、納品ファイルがここに生成されます)
 │  ├─ assets/
@@ -127,12 +127,16 @@ $ yarn images
 │  │  └─ js/
 │  └─ index.html 他、ファイル、ディレクトリ群...
 │
+├─ node_modules/
+│  └─ パッケージ各種
+│
 ├─ src/（ソース）
 │  ├─ _templates/
 │  ├─ about/
+│  ├─ images/ (画像ファイル一式はコピーされます)
 │  ├─ js/
 │  ├─ news/
-│  ├─ public/ (静的ファイル一式はコピーされます)
+│  ├─ public/ (画像以外の静的ファイル一式はコピーされます)
 │  ├─ scss/
 │  └─ index.html
 │
@@ -142,6 +146,7 @@ $ yarn images
 ├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs
+├─ createSymlink.mjs
 ├─ eslint.config.mjs
 ├─ htmlBeautify.mjs
 ├─ package.json

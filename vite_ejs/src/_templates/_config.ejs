@@ -2,17 +2,17 @@
   if (environment === 'production') {
     // 本番環境
     domain = 'https://production.com';
-    path = '/';
+    path = 'https://production.com';
     dir = '/';
   } else if (environment === 'development') {
     // 開発環境
-    domain = 'https://development.com/sub-directory';
-    path = '/sub-directory/';
-    dir = '/sub-directory/';
+    domain = 'https://development.com';
+    path = 'https://development.com';
+    dir = '/';
   } else {
     // ローカル環境
     domain = 'http://localhost:4000';
-    path = '/';
+    path = 'http://localhost:4000';
     dir = '/';
   }
 _%>

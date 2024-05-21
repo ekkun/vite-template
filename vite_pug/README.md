@@ -44,6 +44,16 @@ import sharp from '@img/sharp-win32-x64';
 
 参照: [sharp のエラー解決方法](https://qiita.com/taqumo/items/d1ccae13739e6627f7b5)
 
+### 画像ディレクトリを作成
+
+監視時のテンポラリー画像ディレクトリを作成します
+
+[createSymlink.mjs: ディレクトリ構成の変更は16行目、17行目のパス変更](https://github.com/ekkun/vite-template/blob/main/vite_pug/createSymlink.mjs#L16-L17)
+
+```
+$ yarn ln
+```
+
 ## Vite の監視
 
 監視開始
@@ -109,15 +119,16 @@ $ yarn images
 
 ```JSON
 "scripts": {
-  "images": "node convertImage.mjs -i ./src/public/assets/images -o ./dist/assets/images -m -w -t -v",
+  "images:build": "node convertImage.mjs -i ./src/images -o ./dist/assets/images -m -w -t -v",
+  "images:start": "node convertImage.mjs -i ./src/images -o ./src/public/assets/images -m -w -t -v",
 }
 ```
 
 ## ディレクトリ構成
 
 ```
-├─ node_modules/
-│  └─ パッケージ各種
+├─ .yarn/
+│  └─ temp/public/assets/images (監視時の画像ファイル一式がコピーされます)
 │
 ├─ dist/ (ビルド後、納品ファイルがここに生成されます)
 │  ├─ assets/
@@ -127,25 +138,30 @@ $ yarn images
 │  │  └─ js/
 │  └─ index.html 他、ファイル、ディレクトリ群...
 │
-├─ src/（ソース）
-│  ├─ _templates/
-│  ├─ about/
-│  ├─ js/
-│  ├─ news/
-│  ├─ public/ (静的ファイル一式はコピーされます)
-│  ├─ scss/
-│  └─ index.pug
+├─ node_modules/
+│  └─ パッケージ各種
 │
 ├─ plugins/（プラグイン）
 │  ├─ vite-plugin-pug-build.ts
 │  ├─ vite-plugin-pug-serve.ts
 │  └─ vite-plugin-pug.ts
 │
+├─ src/（ソース）
+│  ├─ _templates/
+│  ├─ about/
+│  ├─ images/ (画像ファイル一式はコピーされます)
+│  ├─ js/
+│  ├─ news/
+│  ├─ public/ (画像以外の静的ファイル一式はコピーされます)
+│  ├─ scss/
+│  └─ index.pug
+│
 ├─ .eslintrc.js
 ├─ .jsbeautifyrc
 ├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs
+├─ createSymlink.mjs
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md

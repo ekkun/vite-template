@@ -8,13 +8,13 @@
 
   if (process.env.NODE_ENV === 'production') {
     site.URL = 'https://production.com'
-    site.path = '/'
+    site.path = 'https://production.com'
   } else if (process.env.NODE_ENV === 'development') {
     site.URL = 'https://development.com'
-    site.path = '/'
+    site.path = 'https://development.com'
   } else {
     site.URL = 'http://localhost:4000'
-    site.path = '/'
+    site.path = 'http://localhost:4000'
   }
 
   const head = {}

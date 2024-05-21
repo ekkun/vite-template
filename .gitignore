@@ -2,6 +2,9 @@
 
 */node_modules/
 */dist/
+*/src/public/assets/images/
+!vite_pug/src/public/assets/images/
+
 vendor
 debug.php
 .env
