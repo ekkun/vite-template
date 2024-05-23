@@ -105,6 +105,7 @@ export default defineConfig({
     outDir: '../dist',
     emptyOutDir: true,
     modulePreload: { polyfill: false },
+    //cssMinify: false,
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {
@@ -113,9 +114,9 @@ export default defineConfig({
           if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
             extType = 'fonts';
           }
-          //if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
-          //  return 'assets/images/[name].[ext]';
-          //}
+          if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            return 'assets/images/[name].[ext]';
+          }
           if (extType === 'css') {
             return 'assets/css/[name].css';
           }
