@@ -4,7 +4,7 @@ export default {
     autoprefixer: {},
     'css-declaration-sorter': { order: 'smacss' },
     'postcss-sort-media-queries': {
-      sort: 'desktop-first'
+      sort: 'mobile-first' // mobile-first, desktop-first
     }
     //'@fullhuman/postcss-purgecss': {
     //  content: ['./src/**/*.html', './src/**/*.pug', './src/js/**/*.js'],
