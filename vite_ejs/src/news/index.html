@@ -31,13 +31,14 @@ _%>
 <main class="main">
   <h1 class="">NEWS</h1>
   <p>ニュースページです。</p>
+  <div class="news__background-image"></div>
   <picture style="display: block; text-align: center; margin: 1rem auto">
     <source type="image/webp" srcset="/assets/images/sub-directory/1.webp">
-    <img src="/assets/images/sub-directory/1.jpg" width="550" height="404" alt="SAMPLE 1">
+    <img src="../images/sub-directory/1.webp" width="550" height="404" alt="SAMPLE 1">
   </picture>
   <picture style="display: block; text-align: center; margin: 1rem auto">
     <source type="image/webp" srcset="/assets/images/sub-directory/2.webp">
-    <img src="/assets/images/sub-directory/2.jpg" width="550" height="404" alt="SAMPLE 2">
+    <img src="/assets/images/sub-directory/2.webp" width="550" height="404" alt="SAMPLE 2">
   </picture>
 </main>
 <%- include('./_templates/_footer.ejs', { domain, path, dir, meta: meta }); %>

@@ -120,7 +120,12 @@ export default defineConfig({
             extType = 'fonts';
           }
           if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            return 'assets/images/[name].[ext]';
+            let originalFileName = assetInfo.originalFileName;
+            if (originalFileName) {
+              return `assets/${originalFileName}`;
+            } else {
+              return 'assets/images/[name].[ext]';
+            }
           }
           if (extType === 'css') {
             return 'assets/css/[name].css';
