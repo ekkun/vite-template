@@ -5,29 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import liveReload from 'vite-plugin-live-reload';
 import babel from '@rollup/plugin-babel';
-
-const isProduction = process.env.NODE_ENV === 'production';
-const isDevelopment = process.env.NODE_ENV === 'development';
-const isPreview = process.env.NODE_ENV === 'preview';
-const isWatch = process.env.NODE_ENV === 'watch';
-let environment;
-
-if (isProduction) {
-  console.info('ビルド環境');
-  environment = 'production';
-}
-if (isDevelopment) {
-  console.info('開発環境');
-  environment = 'development';
-}
-if (isPreview) {
-  console.info('プレビュー');
-  environment = 'preview';
-}
-if (isWatch) {
-  console.info('監視中');
-  environment = 'watch';
-}
+import dotenv from 'dotenv';
+dotenv.config();
 
 const inputHtmlArray = globSync(['src/**/*.html'], { ignore: ['node_modules/**'] }).map((file) => {
   return [path.relative('src', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
@@ -76,109 +55,133 @@ const removeComments = () => {
   };
 };
 
-export default defineConfig({
-  appType: 'spa',
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === 'production';
+  const isDevelopment = mode === 'development';
+  const isPreview = mode === 'preview';
+  const isWatch = mode === 'watch';
+  let environment;
+  if (isProduction) {
+    console.info('現在の環境: ビルド環境');
+    environment = 'production';
+  }
+  if (isDevelopment) {
+    console.info('現在の環境: 開発環境');
+    environment = 'development';
+  }
+  if (isPreview) {
+    console.info('現在の環境: プレビュー');
+    environment = 'production';
+  }
+  if (isWatch) {
+    console.info('現在の環境: 監視中');
+    environment = 'watch';
+  }
 
-  server: {
-    port: 4000,
-    host: true,
-    //open: '/index.html',
-    strictPort: true,
-    watch: {
-      usePolling: true
-    }
-  },
+  return {
+    appType: 'spa',
 
-  preview: {
-    port: 8080,
-    host: true,
-    strictPort: true,
-    watch: {
-      usePolling: true
-    }
-  },
-
-  base: isProduction ? '/' : '/',
-
-  root: path.resolve(__dirname, './src'),
-
-  css: {
-    devSourcemap: true,
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler'
+    server: {
+      port: 4000,
+      host: true,
+      //open: '/index.html',
+      strictPort: true,
+      watch: {
+        usePolling: true
       }
-    }
-  },
-
-  build: {
-    outDir: '../dist',
-    emptyOutDir: true,
-    modulePreload: { polyfill: false },
-    //cssMinify: false,
-    assetsInlineLimit: 0,
-    rollupOptions: {
-      output: {
-        assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.').pop();
-          if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
-            extType = 'fonts';
-          }
-          if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            let originalFileName = assetInfo.originalFileName;
-            if (originalFileName) {
-              return `assets/${originalFileName}`;
-            } else {
-              return 'assets/images/[name].[ext]';
-            }
-          }
-          if (extType === 'css') {
-            return 'assets/css/[name].css';
-          }
-          if (/\.css$/.test(assetInfo.name)) {
-            return 'assets/css/[name].[ext]';
-          }
-          return 'assets/[name].[ext]';
-        },
-        chunkFileNames: `assets/js/[name].js`,
-        entryFileNames: `assets/js/[name].js`
-      },
-      input: inputObject
     },
-    html: {
-      minify: true,
-      inject: {
-        injectTo: 'body',
-        exclude: [],
-        excludeAssets: [],
-        attrs: {
-          link: {
-            crossorigin: undefined
+
+    preview: {
+      port: 8080,
+      host: true,
+      strictPort: true,
+      watch: {
+        usePolling: true
+      }
+    },
+
+    base: isProduction ? '/' : '/',
+
+    root: path.resolve(__dirname, './src'),
+
+    css: {
+      devSourcemap: true,
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler'
+        }
+      }
+    },
+
+    build: {
+      outDir: '../dist',
+      emptyOutDir: true,
+      modulePreload: { polyfill: false },
+      //cssMinify: false,
+      assetsInlineLimit: 0,
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            let extType = assetInfo.name.split('.').pop();
+            if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
+              extType = 'fonts';
+            }
+            if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
+              let originalFileName = assetInfo.originalFileName;
+              if (originalFileName) {
+                return `assets/${originalFileName}`;
+              } else {
+                return 'assets/images/[name].[ext]';
+              }
+            }
+            if (extType === 'css') {
+              return 'assets/css/[name].css';
+            }
+            if (/\.css$/.test(assetInfo.name)) {
+              return 'assets/css/[name].[ext]';
+            }
+            return 'assets/[name].[ext]';
+          },
+          chunkFileNames: `assets/js/[name].js`,
+          entryFileNames: `assets/js/[name].js`
+        },
+        input: inputObject
+      },
+      html: {
+        minify: true,
+        inject: {
+          injectTo: 'body',
+          exclude: [],
+          excludeAssets: [],
+          attrs: {
+            link: {
+              crossorigin: undefined
+            }
           }
         }
       }
-    }
-  },
+    },
 
-  plugins: [
-    liveReload(['_templates/**/*.ejs']),
-    ViteEjsPlugin({
-      root: './',
-      environment: environment,
-      title: 'TITLE',
-      ejs: {
-        //minify: true,
-        beautify: true
-      }
-    }),
-    babel({
-      babelHelpers: 'runtime',
-      exclude: ['node_modules/**'],
-      presets: ['@babel/preset-env'],
-      plugins: ['@babel/plugin-transform-runtime']
-    }),
-    crossorigin({}),
-    generateBundle({}),
-    removeComments()
-  ]
+    plugins: [
+      liveReload(['_templates/**/*.ejs']),
+      ViteEjsPlugin({
+        root: './',
+        environment: environment,
+        title: 'TITLE',
+        ejs: {
+          //minify: true,
+          beautify: true
+        }
+      }),
+      babel({
+        babelHelpers: 'runtime',
+        exclude: ['node_modules/**'],
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-transform-runtime']
+      }),
+      crossorigin({}),
+      generateBundle({}),
+      removeComments()
+    ]
+  };
 });
