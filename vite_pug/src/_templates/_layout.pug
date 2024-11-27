@@ -6,10 +6,10 @@
   site.description = ''
   //-site.URL = ''
 
-  if (process.env.NODE_ENV === 'production') {
+  if (environment === 'production') {
     site.URL = 'https://production.com'
     site.path = 'https://production.com'
-  } else if (process.env.NODE_ENV === 'development') {
+  } else if (environment === 'development') {
     site.URL = 'https://development.com'
     site.path = 'https://development.com'
   } else {

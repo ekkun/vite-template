@@ -5,24 +5,8 @@ import { fileURLToPath } from 'node:url';
 import vitePluginPug from './plugins/vite-plugin-pug';
 import liveReload from 'vite-plugin-live-reload';
 import babel from '@rollup/plugin-babel';
-
-const isProduction = process.env.NODE_ENV === 'production';
-const isDevelopment = process.env.NODE_ENV === 'development';
-const isPreview = process.env.NODE_ENV === 'preview';
-const isWatch = process.env.NODE_ENV === 'watch';
-
-if (isProduction) {
-  console.info('ビルド環境');
-}
-if (isDevelopment) {
-  console.info('開発環境');
-}
-if (isPreview) {
-  console.info('プレビュー');
-}
-if (isWatch) {
-  console.info('監視中');
-}
+import dotenv from 'dotenv';
+dotenv.config();
 
 const inputPugArray = globSync(['src/**/*.pug'], { ignore: ['src/**/_*.pug', 'node_modules/**'] }).map((file) => {
   return [path.relative('src', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
@@ -71,97 +55,121 @@ const removeComments = () => {
   };
 };
 
-export default defineConfig({
-  appType: 'spa',
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === 'production';
+  const isDevelopment = mode === 'development';
+  const isPreview = mode === 'preview';
+  const isWatch = mode === 'watch';
+  let environment;
+  if (isProduction) {
+    console.info('現在の環境: ビルド環境');
+    environment = 'production';
+  }
+  if (isDevelopment) {
+    console.info('現在の環境: 開発環境');
+    environment = 'development';
+  }
+  if (isPreview) {
+    console.info('現在の環境: プレビュー');
+    environment = 'production';
+  }
+  if (isWatch) {
+    console.info('現在の環境: 監視中');
+    environment = 'watch';
+  }
 
-  server: {
-    port: 4000,
-    host: true,
-    //open: '/index.html',
-    strictPort: true,
-    watch: {
-      usePolling: true
-    }
-  },
+  return {
+    appType: 'spa',
 
-  preview: {
-    port: 8080,
-    host: true,
-    strictPort: true,
-    watch: {
-      usePolling: true
-    }
-  },
-
-  base: isProduction ? '/' : '/',
-
-  root: path.resolve(__dirname, './src'),
-
-  css: {
-    devSourcemap: true,
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler'
+    server: {
+      port: 4000,
+      host: true,
+      //open: '/index.html',
+      strictPort: true,
+      watch: {
+        usePolling: true
       }
-    }
-  },
+    },
 
-  build: {
-    outDir: '../dist',
-    emptyOutDir: true,
-    modulePreload: { polyfill: false },
-    //cssMinify: false,
-    assetsInlineLimit: 0,
-    rollupOptions: {
-      output: {
-        assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.').pop();
-          if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
-            extType = 'fonts';
-          }
-          if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            let originalFileName = assetInfo.originalFileName;
-            if (originalFileName) {
-              return `assets/${originalFileName}`;
-            } else {
-              return 'assets/images/[name].[ext]';
+    preview: {
+      port: 8080,
+      host: true,
+      strictPort: true,
+      watch: {
+        usePolling: true
+      }
+    },
+
+    base: isProduction ? '/' : '/',
+
+    root: path.resolve(__dirname, './src'),
+
+    css: {
+      devSourcemap: true,
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler'
+        }
+      }
+    },
+
+    build: {
+      outDir: '../dist',
+      emptyOutDir: true,
+      modulePreload: { polyfill: false },
+      //cssMinify: false,
+      assetsInlineLimit: 0,
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            let extType = assetInfo.name.split('.').pop();
+            if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
+              extType = 'fonts';
             }
-          }
-          if (extType === 'css') {
-            return 'assets/css/[name].css';
-          }
-          if (/\.css$/.test(assetInfo.name)) {
-            return 'assets/css/[name].[ext]';
-          }
-          return 'assets/[name].[ext]';
+            if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
+              let originalFileName = assetInfo.originalFileName;
+              if (originalFileName) {
+                return `assets/${originalFileName}`;
+              } else {
+                return 'assets/images/[name].[ext]';
+              }
+            }
+            if (extType === 'css') {
+              return 'assets/css/[name].css';
+            }
+            if (/\.css$/.test(assetInfo.name)) {
+              return 'assets/css/[name].[ext]';
+            }
+            return 'assets/[name].[ext]';
+          },
+          chunkFileNames: `assets/js/[name].js`,
+          entryFileNames: `assets/js/[name].js`
         },
-        chunkFileNames: `assets/js/[name].js`,
-        entryFileNames: `assets/js/[name].js`
-      },
-      input: inputObject
-    }
-  },
-
-  plugins: [
-    liveReload(['src/**/*.pug']),
-    vitePluginPug({
-      build: {
-        locals: { hoge: 'hoge' },
-        options: { pretty: true }
-      },
-      serve: {
-        locals: { hoge: 'hoge' },
-        options: { pretty: true }
+        input: inputObject
       }
-    }),
-    babel({
-      babelHelpers: 'runtime',
-      exclude: ['node_modules/**'],
-      presets: ['@babel/preset-env'],
-      plugins: ['@babel/plugin-transform-runtime']
-    }),
-    crossorigin({}),
-    generateBundle({}),
-    removeComments()
-  ]
+    },
+
+    plugins: [
+      liveReload(['src/**/*.pug']),
+      vitePluginPug({
+        build: {
+          locals: { environment, hoge: 'hoge' },
+          options: { pretty: true }
+        },
+        serve: {
+          locals: { environment, hoge: 'hoge' },
+          options: { pretty: true }
+        }
+      }),
+      babel({
+        babelHelpers: 'runtime',
+        exclude: ['node_modules/**'],
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-transform-runtime']
+      }),
+      crossorigin({}),
+      generateBundle({}),
+      removeComments()
+    ]
+  };
 });
