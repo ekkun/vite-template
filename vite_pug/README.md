@@ -2,7 +2,7 @@
 
 Vite + Pug + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS14.4.1 / node v21.6.2 / Yarn v4.1.1 / 検証済み)
+(macOS 15.1.1 / node v23.3.0 / Yarn v4.5.3 / 検証済み)
 
 - Pug -> html
 - Sass -> css
@@ -156,12 +156,19 @@ $ yarn images
 │  ├─ scss/
 │  └─ index.pug
 │
+├─ .env.development
+├─ .env.production
+├─ .env.watch
 ├─ .eslintrc.js
 ├─ .jsbeautifyrc
 ├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs
 ├─ createSymlink.mjs
+├─ eslint.config.mjs
+├─ postcss.config.mjs
+├─ htmlBeautify.mjs
+├─ mediaQueries.mjs
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md

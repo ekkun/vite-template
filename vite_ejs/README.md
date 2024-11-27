@@ -2,7 +2,7 @@
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS14.4.1 / node v21.6.2 / Yarn v4.1.1 / 検証済み)
+(macOS 15.1.1 / node v23.3.0 / Yarn v4.5.3 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
@@ -140,6 +140,9 @@ $ yarn images
 │  ├─ scss/
 │  └─ index.html
 │
+├─ .env.development
+├─ .env.production
+├─ .env.watch
 ├─ .jsbeautifyrc
 ├─ .markuplintrc
 ├─ .prettierrc.json
@@ -149,6 +152,7 @@ $ yarn images
 ├─ createSymlink.mjs
 ├─ eslint.config.mjs
 ├─ htmlBeautify.mjs
+├─ mediaQueries.mjs
 ├─ package.json
 ├─ postcss.config.js
 ├─ README.md
