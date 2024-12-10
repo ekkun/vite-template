@@ -2,6 +2,11 @@
   "presets": ["@babel/preset-env"],
   "plugins": [
     "@babel/plugin-transform-runtime",
+    [
+      {
+        "regenerator": true
+      }
+    ],
     "@babel/plugin-transform-arrow-functions",
     [
       "babel-plugin-import",

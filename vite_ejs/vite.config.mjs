@@ -162,6 +162,15 @@ export default defineConfig(({ mode }) => {
       }
     },
 
+    optimizeDeps: {
+      include: ['@babel/runtime/regenerator']
+    },
+
+    define: {
+      $: 'window.jQuery',
+      jQuery: 'window.jQuery'
+    },
+
     plugins: [
       liveReload(['_templates/**/*.ejs']),
       ViteEjsPlugin({
