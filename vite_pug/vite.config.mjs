@@ -149,6 +149,15 @@ export default defineConfig(({ mode }) => {
       }
     },
 
+    optimizeDeps: {
+      include: ['@babel/runtime/regenerator']
+    },
+
+    define: {
+      $: 'window.jQuery',
+      jQuery: 'window.jQuery'
+    },
+
     plugins: [
       liveReload(['src/**/*.pug']),
       vitePluginPug({
