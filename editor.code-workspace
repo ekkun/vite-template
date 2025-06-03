@@ -22,13 +22,13 @@
       "ejs": "html"
     },
     "[php]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
       "editor.formatOnSave": false,
       "editor.insertSpaces": true
     },
     "[html]": {
-      //"editor.defaultFormatter": "j69.ejs-beautify",
-      "editor.formatOnSave": false,
+      "editor.defaultFormatter": "j69.ejs-beautify",
+      "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
     "[scss]": {
@@ -37,6 +37,7 @@
     },
     "[ejs]": {
       //"editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "j69.ejs-beautify",
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
@@ -45,12 +46,12 @@
       "editor.insertSpaces": true
     },
     "[javascript]": {
-      //"editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
     "[typescript]": {
-      //"editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
