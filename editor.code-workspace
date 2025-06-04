@@ -2,6 +2,12 @@
   "folders": [
     {
       "path": "."
+    },
+    {
+      "path": "./vite_ejs/"
+    },
+    {
+      "path": "./vite_pug/"
     }
   ],
   "settings": {
@@ -11,7 +17,7 @@
     },
     "editor.codeActionsOnSave": null,
     "editor.tabSize": 2,
-    //"editor.insertSpaces": false,
+    "editor.insertSpaces": true,
     "editor.fontFamily": "Osaka-Mono, Menlo, Monaco, 'Courier New', monospace",
     "prettier.printWidth": 640,
     "prettier.tabWidth": 2,
@@ -22,13 +28,13 @@
       "ejs": "html"
     },
     "[php]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
       "editor.formatOnSave": false,
       "editor.insertSpaces": true
     },
     "[html]": {
-      //"editor.defaultFormatter": "j69.ejs-beautify",
-      "editor.formatOnSave": false,
+      "editor.defaultFormatter": "j69.ejs-beautify",
+      "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
     "[scss]": {
@@ -37,6 +43,7 @@
     },
     "[ejs]": {
       //"editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "j69.ejs-beautify",
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
@@ -45,16 +52,20 @@
       "editor.insertSpaces": true
     },
     "[javascript]": {
-      //"editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
     "[typescript]": {
-      //"editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     },
     "[css]": {
+      "editor.formatOnSave": true,
+      "editor.insertSpaces": true
+    },
+    "[json]": {
       "editor.formatOnSave": true,
       "editor.insertSpaces": true
     }

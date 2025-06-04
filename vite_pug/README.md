@@ -19,8 +19,23 @@ Vite + Pug + Sass + Babel を使用したビルドツールのスターターキ
 $ yarn install
 ```
 
+### VS Code 用 SDK のセットアップ (Yarn PnP)
+
+Yarn Plug’n’Play (PnP) 環境で VS Code が Prettier や TypeScript などの開発ツールを正しく認識できるように、.yarn/sdks/ 以下に必要な SDK ファイルを生成します。  
+これにより、補完・フォーマット・Lint などのエディタ連携がスムーズになります。  
+(※ VS Code バージョン 1.77 以降推奨)
+
+```
+$ yarn dlx @yarnpkg/sdks vscode
+```
+
 > [!WARNING]
 > Windows 環境の方は必読ください！
+
+### 🧯 Windows + sharp 使用時の注意
+
+Windows 環境で `yarn install` を実行すると、画像処理ライブラリ `sharp` に関するビルドエラーが発生する可能性があります。  
+以下の手順で回避できます。
 
 ### sharp のエラー解決方法
 
