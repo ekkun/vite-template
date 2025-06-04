@@ -1,7 +1,7 @@
 {
   "name": "vite_ejs_template",
   "description": "Vite + ejs + Sass + Babel",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "keywords": [
     "Vite",
     "ejs",
@@ -82,8 +82,7 @@
     "ie >= 11"
   ],
   "comments": {
-    "eslint-plugin-react": "^7.34.1",
-    "": "",
+    "VSCode SDK セットアップ": "$ yarn dlx @yarnpkg/sdks vscode",
     "npm-check-updates": "$ yarn ncu, $ yarn ncu -u, $ yarn ncu --upgrade --target minor, $ yarn ncu -u --target patch",
     "yarn": "yarn cache clean",
     "NOTE": "supports-color@8.1.1 を使用。debug等が10以降を要求してもアップデート不可。ESM化の影響を避けるため。"
