@@ -2,6 +2,12 @@
   "folders": [
     {
       "path": "."
+    },
+    {
+      "path": "./vite_ejs/"
+    },
+    {
+      "path": "./vite_pug/"
     }
   ],
   "settings": {
@@ -11,7 +17,7 @@
     },
     "editor.codeActionsOnSave": null,
     "editor.tabSize": 2,
-    //"editor.insertSpaces": false,
+    "editor.insertSpaces": true,
     "editor.fontFamily": "Osaka-Mono, Menlo, Monaco, 'Courier New', monospace",
     "prettier.printWidth": 640,
     "prettier.tabWidth": 2,
