@@ -39,6 +39,7 @@
     "@img/sharp-win32-x64": "^0.34.2",
     "@markuplint/ejs-parser": "^4.6.19",
     "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "autoprefixer": "^10.4.21",
     "babel-plugin-import": "^1.13.8",
     "commander": "^14.0.0",

@@ -11,6 +11,7 @@ debug.php
 _datacache
 sitemap.xml
 
+.vscode
 .yarn
 .pnp.cjs
 .pnp.loader.mjs

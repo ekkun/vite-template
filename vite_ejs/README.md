@@ -160,6 +160,7 @@ $ yarn images
 ├─ .env.watch
 ├─ .jsbeautifyrc
 ├─ .markuplintrc
+├─ .ncurc.json
 ├─ .prettierrc.json
 ├─ .yarnrc.yml
 ├─ babel.babelrc

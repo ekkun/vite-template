@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import vitePluginPug from './plugins/vite-plugin-pug';
 import liveReload from 'vite-plugin-live-reload';
 import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -154,8 +155,8 @@ export default defineConfig(({ mode }) => {
     },
 
     define: {
-      $: 'window.jQuery',
-      jQuery: 'window.jQuery'
+      //$: 'window.jQuery',
+      //jQuery: 'window.jQuery'
     },
 
     plugins: [
@@ -176,6 +177,7 @@ export default defineConfig(({ mode }) => {
         presets: ['@babel/preset-env'],
         plugins: ['@babel/plugin-transform-runtime']
       }),
+      commonjs(),
       crossorigin({}),
       generateBundle({}),
       removeComments()

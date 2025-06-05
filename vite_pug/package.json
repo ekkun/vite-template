@@ -38,6 +38,7 @@
     "@img/sharp-win32-x64": "^0.34.2",
     "@markuplint/pug-parser": "^4.6.19",
     "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@types/node": "^22.15.23",
     "@types/pug": "^2.0.10",
     "autoprefixer": "^10.4.21",
