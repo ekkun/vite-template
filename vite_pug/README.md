@@ -174,8 +174,10 @@ $ yarn images
 ├─ .env.development
 ├─ .env.production
 ├─ .env.watch
-├─ .eslintrc.js
 ├─ .jsbeautifyrc
+├─ .markuplintrc
+├─ .ncurc.json
+├─ .prettierrc.json
 ├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs

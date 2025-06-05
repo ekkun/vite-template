@@ -1,7 +1,8 @@
 /**
  * TEST
  */
-import $ from 'jquery';
+import * as jQuery from 'jquery';
+const $ = jQuery.default || jQuery;
 
 (() => {
   // Babelで変換されるかどうかのテストコード
