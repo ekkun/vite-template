@@ -2,4 +2,9 @@
 @use '../global' as *;
 
 .main {
+  .tab\:hidden {
+    @include media(md, down) {
+      display: none;
+    }
+  }
 }

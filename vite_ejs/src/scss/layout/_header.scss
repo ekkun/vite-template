@@ -7,20 +7,20 @@
   margin: 0;
   background-color: var(--blue);
 
-  @include mq-min(md) {
+  @include media(md, up) {
     color: #000;
     background-color: var(--orange);
   }
 
-  @include mq-min(tab) {
+  @include media(tab, up) {
     background-color: var(--gray);
   }
 
-  @include mq-min(xl) {
+  @include media(xl, up) {
     background-color: var(--purple);
   }
 
-  @include mq-min('pc-lg') {
+  @include media(pc-lg, up) {
     background-color: var(--green);
   }
 }
