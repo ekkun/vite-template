@@ -1,0 +1,28 @@
+// Footer
+@use '../global' as *;
+
+.footer {
+  color: #fff;
+  background-color: var(--blue);
+
+  @include media(pc-lg, up) {
+    margin: 0 0 10rem;
+  }
+
+  @include media(md, up) {
+    color: #000;
+    background-color: var(--orange);
+  }
+
+  @include media(tab, up) {
+    background-color: var(--gray);
+  }
+
+  @include media(xl, up) {
+    background-color: var(--purple);
+  }
+
+  @include media(pc-lg, up) {
+    background-color: var(--green);
+  }
+}

@@ -1,0 +1,50 @@
+<%- include('./_templates/_config.ejs'); %>
+<%_
+  const meta = {
+    page: 'news',
+    title: 'NEWS｜サイト名',
+    description: 'ここにNEWSのディスクリプションが入ります',
+    canonical: 'https://prod.com/news/detail/',
+    ogp: 'https://prod.com/assets/images/ogp.png',
+    stylePath: '/assets/css/',
+    scriptPath: '/assets/js/',
+    imgPath: '/assets/images/',
+    linkPath: '../'
+  };
+  const structured = {
+    item: [
+      {
+        level: '2',
+        name: 'ニュース',
+        url: `/${ meta.page }/`,
+      },
+      {
+        level: '3',
+        name: 'ニュース詳細ページ',
+        url: `/${ meta.page }/detail/`,
+      },
+    ],
+  };
+_%>
+<%- include('./_templates/_head.ejs', { domain, path, dir, meta: meta, structured }); %>
+<%- include('./_templates/_header.ejs', { domain, path, dir, meta: meta }); %>
+<main class="main">
+  <h1 class="">NEWS</h1>
+  <p>ニュースページです。</p>
+  <div class="news__background-image"></div>
+  <picture style="display: block; text-align: center; margin: 1rem auto">
+    <source type="image/webp" srcset="/assets/images/sub-directory/1.webp">
+    <img src="../images/sub-directory/1.webp" width="550" height="404" alt="SAMPLE 1">
+  </picture>
+  <picture style="display: block; text-align: center; margin: 1rem auto">
+    <source type="image/webp" srcset="/assets/images/sub-directory/2.webp">
+    <img src="/assets/images/sub-directory/2.webp" width="550" height="404" alt="SAMPLE 2">
+  </picture>
+</main>
+<%- include('./_templates/_footer.ejs', { domain, path, dir, meta: meta }); %>
+<!--script src="< %= meta.scriptPath; %>main.js"></script-->
+
+<link rel="stylesheet" href="../scss/style.scss" />
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>

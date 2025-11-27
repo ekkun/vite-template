@@ -1,0 +1,1 @@
+# Vite + EJS Lite Template

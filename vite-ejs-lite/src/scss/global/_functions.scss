@@ -1,0 +1,14 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'variables' as *;
+
+@function breakpoint($key, $direction: up) {
+  @if $direction == up {
+    @return map.get($breakpoint-up, $key);
+  } @else if $direction == down {
+    @return map.get($breakpoint-down, $key);
+  } @else {
+    @error 'breakpoint()の第2引数は up か down にしてください。';
+  }
+}

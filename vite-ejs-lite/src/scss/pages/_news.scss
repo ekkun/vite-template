@@ -1,0 +1,15 @@
+@use '../global' as *;
+
+.news {
+  margin: 0;
+
+  &__background-image {
+    width: 240px;
+    height: 240px;
+    background-image: url(../images/sub-directory/d9808de9d614551558b2c6d6295138a9.webp);
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+  }
+}
