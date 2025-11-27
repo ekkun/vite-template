@@ -3,7 +3,6 @@ import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
-import legacy from '@vitejs/plugin-legacy';
 import liveReload from 'vite-plugin-live-reload';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -39,6 +38,15 @@ const inputJsArray = globSync('src/js/*.js', {
 // Rollup 用 input オブジェクト
 const inputObject = Object.fromEntries(inputJsArray.concat(inputHtmlArray, inputScssArray));
 console.info('[vite_ejs_lite] entrypoints:', inputObject);
+
+const crossorigin = () => {
+  return {
+    name: 'crossorigin',
+    transformIndexHtml(html) {
+      return html.replace(/crossorigin/g, `crossorigin="use-credentials"`);
+    }
+  };
+};
 
 const generateBundle = () => {
   return {
@@ -125,6 +133,8 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       modulePreload: { polyfill: false },
       assetsInlineLimit: 0,
+      minify: 'esbuild',
+      target: 'es2015',
       rollupOptions: {
         input: inputObject,
         output: {
@@ -159,9 +169,7 @@ export default defineConfig(({ mode }) => {
           beautify: true
         }
       }),
-      legacy({
-        targets: ['defaults', 'not IE 11']
-      }),
+      crossorigin({}),
       generateBundle({}),
       removeComments()
     ]
