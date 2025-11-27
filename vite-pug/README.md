@@ -2,7 +2,7 @@
 
 Vite + Pug + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS 15.5 / node v23.11.1 / Yarn v4.9.2 / 検証済み)
+(macOS 26.1 / node v23.11.1 / Yarn v4.12.0 / 検証済み)
 
 - Pug -> html
 - Sass -> css

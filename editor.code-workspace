@@ -7,6 +7,9 @@
       "path": "./vite-ejs/"
     },
     {
+      "path": "./vite-ejs-lite/"
+    },
+    {
       "path": "./vite-pug/"
     }
   ],
