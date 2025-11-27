@@ -1,0 +1,61 @@
+// Root
+:root {
+  /*Colors*/
+  --blue: #00baf0;
+  --white: #fff;
+  --gray: #f4f4f4;
+  --orange: #ff9545;
+  --green: #4c6520;
+  --purple: #d900ff;
+
+  /*Style Guide*/
+  --primary-color: var(--blue);
+  --secondary-color: var(--white);
+  --accent-color: var(--gray);
+  --button-1: var(--orange);
+  --button-2: var(--green);
+}
+
+// Color
+//$colorWhite: #ffffff !default;
+//$colorBlack: #333333 !default;
+//$colorGreen: #37ab9d !default;
+//$colorRed: #e93d3d !default;
+
+// Break points
+// Breakpoint variables
+$xs: 320px;
+$s: 375px;
+$sm: 425px;
+$md: 768px;
+$lg: 960px;
+$tab: 1024px;
+$xl: 1280px;
+$pc-md: 1440px;
+$pc-lg: 1608px;
+
+// min-width
+$breakpoint-up: (
+  'xs': 'screen and (min-width: #{$xs})',
+  's': 'screen and (min-width: #{$s})',
+  'sm': 'screen and (min-width: #{$sm})',
+  'md': 'screen and (min-width: #{$md})',
+  'lg': 'screen and (min-width: #{$lg})',
+  'tab': 'screen and (min-width: #{$tab})',
+  'xl': 'screen and (min-width: #{$xl})',
+  'pc-md': 'screen and (min-width: #{$pc-md})',
+  'pc-lg': 'screen and (min-width: #{$pc-lg})'
+) !default;
+
+// max-width
+$breakpoint-down: (
+  'xs': 'screen and (max-width: #{($xs - 1)})',
+  's': 'screen and (max-width: #{($s - 1)})',
+  'sm': 'screen and (max-width: #{($sm - 1)})',
+  'md': 'screen and (max-width: #{($md - 1)})',
+  'lg': 'screen and (max-width: #{($lg - 1)})',
+  'tab': 'screen and (max-width: #{($tab - 1)})',
+  'xl': 'screen and (max-width: #{($xl - 1)})',
+  'pc-md': 'screen and (max-width: #{($pc-md - 1)})',
+  'pc-lg': 'screen and (max-width: #{($pc-lg - 1)})'
+) !default;

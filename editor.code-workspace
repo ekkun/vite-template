@@ -4,10 +4,13 @@
       "path": "."
     },
     {
-      "path": "./vite_ejs/"
+      "path": "./vite-ejs/"
     },
     {
-      "path": "./vite_pug/"
+      "path": "./vite-ejs-lite/"
+    },
+    {
+      "path": "./vite-pug/"
     }
   ],
   "settings": {

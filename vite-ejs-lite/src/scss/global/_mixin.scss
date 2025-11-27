@@ -1,0 +1,27 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'functions' as *;
+@use 'variables' as *;
+
+// media query
+@mixin media($key, $direction: up) {
+  @media #{breakpoint($key, $direction)} {
+    @content;
+  }
+}
+
+// clear fix
+@mixin clearfix {
+  zoom: 1;
+
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+  }
+
+  &::after {
+    clear: both;
+  }
+}
