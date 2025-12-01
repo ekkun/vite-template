@@ -13,11 +13,11 @@ export default ({ env }) => ({
     cssDeclarationSorter({ order: 'smacss' }),
 
     // 本番ビルドのみ PurgeCSS を有効化
-    env === 'production'
-      ? purgecss({
-          content: ['./src/**/*.html', './src/js/**/*.js'],
-          safelist: ['hoge'],
-        })
-      : null,
+    //env === 'production'
+    //  ? purgecss({
+    //      content: ['./src/**/*.html', './src/js/**/*.js'],
+    //      safelist: ['hoge'],
+    //    })
+    //  : null,
   ].filter(Boolean),
 });
