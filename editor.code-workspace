@@ -4,6 +4,9 @@
       "path": "."
     },
     {
+      "path": "./vite-react/"
+    },
+    {
       "path": "./vite-ejs/"
     },
     {
@@ -21,13 +24,15 @@
     "editor.codeActionsOnSave": null,
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.fontFamily": "Osaka-Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 11,
+    "editor.fontFamily": "'0xProto'", //"Osaka-Mono, Menlo, Monaco, 'Courier New', monospace",
     "prettier.printWidth": 640,
     "prettier.tabWidth": 2,
     "files.insertFinalNewline": false,
     "editor.comments.ignoreEmptyLines": true,
     "editor.comments.insertSpace": false,
     "emmet.includeLanguages": {
+      "html": "html",
       "ejs": "html"
     },
     "[php]": {
