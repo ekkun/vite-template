@@ -18,7 +18,7 @@ export default ({ env }) => ({
 
     sortMediaQueries({
       sort: 'mobile-first' // mobile-first | desktop-first
-    }),
+    })
 
     // 本番ビルドのときだけ PurgeCSS を有効化
     //env === 'production'
