@@ -1,7 +1,7 @@
 {
   "name": "vite-pug-template",
   "description": "Vite + Pug + Sass + Babel",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "keywords": [
     "Vite",
     "pug",

@@ -2,7 +2,7 @@
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS 26.1 / node v23.11.1 / Yarn v4.12.0 / 検証済み)
+(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / Yarn v4.12.0 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
@@ -13,7 +13,7 @@ Vite + ejs + Sass + Babel を使用したビルドツールのスターターキ
 プロジェクトのディレクトリに移動して実行
 
 ```
-$ yarn install
+$ pnpm install / yarn install
 ```
 
 ### VS Code 用 SDK のセットアップ (Yarn PnP)
@@ -33,7 +33,7 @@ $ yarn dlx @yarnpkg/sdks vscode
 /dist/ には書き出されないので注意
 
 ```
-$ yarn start
+$ pnpm start / yarn start
 ```
 
 ## 開発用ファイル生成
@@ -41,7 +41,7 @@ $ yarn start
 開発用のファイル一式を生成
 
 ```
-$ yarn dev
+$ pnpm dev / yarn dev
 ```
 
 ## Vite のプレビュー
@@ -51,7 +51,7 @@ $ yarn dev
 /dist/ には書き出されないので注意
 
 ```
-$ yarn preview
+$ pnpm preview / yarn preview
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -59,7 +59,7 @@ $ yarn preview
 公開用ファイル一式を生成
 
 ```
-$ yarn build
+$ pnpm build / yarn build
 ```
 
 ## EJS 設定
@@ -105,6 +105,8 @@ $ yarn build
 ├─ htmlBeautify.mjs
 ├─ mediaQueries.mjs
 ├─ package.json
+├─ pnpm-lock.yaml
+├─ pnpm-workspace.yaml
 ├─ README.md
 └─ vite.config.js
 ```
@@ -115,6 +117,6 @@ $ yarn build
 
 ```
 $ rm -rf node_modules
-$ yarn cache clean
-$ yarn install
+$ pnpm cache clean / yarn cache clean
+$ pnpm install / yarn install
 ```
