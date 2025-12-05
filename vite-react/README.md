@@ -2,7 +2,7 @@
 
 Vite + React + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / Yarn v4.12.0 / 検証済み)
+(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
 
 - HTML -> HTML
 - SCSS (Sass) -> CSS
@@ -13,7 +13,7 @@ Vite + React + Sass + Babel を使用したビルドツールのスターター�
 プロジェクトのディレクトリに移動して実行
 
 ```
-$ pnpm install / yarn install
+$ pnpm i
 ```
 
 ## Vite の監視
@@ -23,7 +23,7 @@ $ pnpm install / yarn install
 /dist/ には書き出されないので注意
 
 ```
-$ pnpm dev / yarn dev
+$ pnpm dev
 ```
 
 ## Vite のプレビュー
@@ -33,7 +33,7 @@ $ pnpm dev / yarn dev
 /dist/ には書き出されないので注意
 
 ```
-$ pnpm preview / yarn preview
+$ pnpm preview
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -41,7 +41,7 @@ $ pnpm preview / yarn preview
 公開用ファイル一式を生成
 
 ```
-$ pnpm build / yarn build
+$ pnpm build
 ```
 
 ## ディレクトリ構成

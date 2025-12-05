@@ -1,7 +1,7 @@
 {
   "name": "vite-react-template",
   "description": "Vite + React + Sass + Babel",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "keywords": [
     "Vite",
     "react",
@@ -27,8 +27,8 @@
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.48.0",
-    "@typescript-eslint/parser": "^8.48.0",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.22",
     "css-declaration-sorter": "^7.3.0",
@@ -44,11 +44,11 @@
     "vite": "^7.2.6"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "browserslist": [],
   "comments": {
-    "npm-check-updates": "$ npx ncu, $ npx ncu -u --target patch"
+    "npm-check-updates": "$ pnpm ncu, $ pnpm ncu -u, $ pnpm ncu -u --target patch"
   }
 }

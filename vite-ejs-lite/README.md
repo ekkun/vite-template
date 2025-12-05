@@ -2,7 +2,7 @@
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / Yarn v4.12.0 / 検証済み)
+(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
@@ -13,17 +13,7 @@ Vite + ejs + Sass + Babel を使用したビルドツールのスターターキ
 プロジェクトのディレクトリに移動して実行
 
 ```
-$ pnpm install / yarn install
-```
-
-### VS Code 用 SDK のセットアップ (Yarn PnP)
-
-Yarn Plug’n’Play (PnP) 環境で VS Code が Prettier や TypeScript などの開発ツールを正しく認識できるように、.yarn/sdks/ 以下に必要な SDK ファイルを生成します。  
-これにより、補完・フォーマット・Lint などのエディタ連携がスムーズになります。  
-(※ VS Code バージョン 1.77 以降推奨)
-
-```
-$ yarn dlx @yarnpkg/sdks vscode
+$ pnpm i
 ```
 
 ## Vite の監視
@@ -33,7 +23,7 @@ $ yarn dlx @yarnpkg/sdks vscode
 /dist/ には書き出されないので注意
 
 ```
-$ pnpm start / yarn start
+$ pnpm dev
 ```
 
 ## 開発用ファイル生成
@@ -41,7 +31,7 @@ $ pnpm start / yarn start
 開発用のファイル一式を生成
 
 ```
-$ pnpm dev / yarn dev
+$ pnpm build:dev
 ```
 
 ## Vite のプレビュー
@@ -51,7 +41,7 @@ $ pnpm dev / yarn dev
 /dist/ には書き出されないので注意
 
 ```
-$ pnpm preview / yarn preview
+$ pnpm preview
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -59,7 +49,7 @@ $ pnpm preview / yarn preview
 公開用ファイル一式を生成
 
 ```
-$ pnpm build / yarn build
+$ pnpm build:prod
 ```
 
 ## EJS 設定
@@ -73,8 +63,6 @@ $ pnpm build / yarn build
 ## ディレクトリ構成
 
 ```
-├─ .yarn/
-│
 ├─ dist/ (ビルド後、納品ファイルがここに生成されます)
 │  ├─ assets/
 │  │  ├─ css/
@@ -113,10 +101,10 @@ $ pnpm build / yarn build
 
 ## 再インストール
 
-`yarn` でエラーが出た場合は再インストールをしてください。
+`pnpm` でエラーが出た場合は再インストールをしてください。
 
 ```
 $ rm -rf node_modules
-$ pnpm cache clean / yarn cache clean
-$ pnpm install / yarn install
+$ pnpm cache clean
+$ pnpm install
 ```
