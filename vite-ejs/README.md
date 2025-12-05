@@ -2,7 +2,7 @@
 
 Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
 
-(macOS 26.1 / node v23.11.1 / Yarn v4.12.0 / 検証済み)
+(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
@@ -16,39 +16,23 @@ Vite + ejs + Sass + Babel を使用したビルドツールのスターターキ
 プロジェクトのディレクトリに移動して実行
 
 ```
-$ yarn install
+$ pnpm i
 ```
 
-### VS Code 用 SDK のセットアップ (Yarn PnP)
-
-Yarn Plug’n’Play (PnP) 環境で VS Code が Prettier や TypeScript などの開発ツールを正しく認識できるように、.yarn/sdks/ 以下に必要な SDK ファイルを生成します。  
-これにより、補完・フォーマット・Lint などのエディタ連携がスムーズになります。  
-(※ VS Code バージョン 1.77 以降推奨)
-
-```
-$ yarn dlx @yarnpkg/sdks vscode
-```
 
 > [!WARNING]
 > Windows 環境の方は必読ください！
 
 ### 🧯 Windows + sharp 使用時の注意
 
-Windows 環境で `yarn install` を実行すると、画像処理ライブラリ `sharp` に関するビルドエラーが発生する可能性があります。  
+Windows 環境で `pnpm install` を実行すると、画像処理ライブラリ `sharp` に関するビルドエラーが発生する可能性があります。  
 以下の手順で回避できます。
 
 ### sharp のエラー解決方法
 
-`yarn install` でコケるハズです  
+`pnpm install` でコケるハズです  
 そのため以下の設定をお願いします
 
-<!--
-[package.json: 61行目を削除](https://github.com/ekkun/vite-template/blob/main/vite_ejs/package.json#L61)
-
-```
-$ yarn add --dev @img/sharp-win32-x64
-```
--->
 
 [convertImage.mjs: 14行目をコメントアウト、15行目をコメント削除](https://github.com/ekkun/vite-template/blob/main/vite_ejs/convertImage.mjs#L14-L15)
 
@@ -66,7 +50,7 @@ import sharp from '@img/sharp-win32-x64';
 /dist/ には書き出されないので注意
 
 ```
-$ yarn start
+$ pnpm dev / pnpm start
 ```
 
 ## 開発用ファイル生成
@@ -74,7 +58,7 @@ $ yarn start
 開発用のファイル一式を生成
 
 ```
-$ yarn dev
+$ pnpm build:dev
 ```
 
 ## Vite のプレビュー
@@ -84,7 +68,7 @@ $ yarn dev
 /dist/ には書き出されないので注意
 
 ```
-$ yarn preview
+$ pnpm preview
 ```
 
 ## 納品／アップロード用ファイル生成
@@ -92,7 +76,7 @@ $ yarn preview
 公開用ファイル一式を生成
 
 ```
-$ yarn build
+$ pnpm build:prod
 ```
 
 ## EJS 設定
@@ -109,7 +93,7 @@ $ yarn build
 監視、公開用すべてのコマンドで実行します
 
 ```
-$ yarn images
+$ pnpm images
 ```
 
 <span style="font-size: x-small;">※ 画像追加、修正時にこのコマンドを実行してください。</span>
@@ -132,7 +116,6 @@ $ yarn images
 ## ディレクトリ構成
 
 ```
-├─ .yarn/
 │
 ├─ dist/ (ビルド後、納品ファイルがここに生成されます)
 │  ├─ assets/
@@ -162,7 +145,6 @@ $ yarn images
 ├─ .markuplintrc
 ├─ .ncurc.json
 ├─ .prettierrc.json
-├─ .yarnrc.yml
 ├─ babel.babelrc
 ├─ convertImage.mjs
 ├─ createSymlink.mjs
@@ -170,6 +152,8 @@ $ yarn images
 ├─ htmlBeautify.mjs
 ├─ mediaQueries.mjs
 ├─ package.json
+├─ pnpm-lock.yaml
+├─ pnpm-workspace.yaml
 ├─ postcss.config.js
 ├─ README.md
 ├─ svgo.config.js
@@ -179,12 +163,12 @@ $ yarn images
 
 ## 再インストール
 
-`yarn` でエラーが出た場合は再インストールをしてください。
+`pnpm` でエラーが出た場合は再インストールをしてください。
 
 ```
 $ rm -rf node_modules
-$ yarn cache clean
-$ yarn install
+$ pnpm cache clean
+$ pnpm install
 ```
 
 ## 参考 <!-- Reference -->

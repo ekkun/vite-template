@@ -1,7 +1,7 @@
 {
   "name": "vite-ejs-lite-template",
   "description": "Vite + ejs + Sass + Babel",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "keywords": [
     "Vite",
     "ejs",
@@ -12,10 +12,12 @@
   "license": "Oshinco Co-op",
   "private": true,
   "scripts": {
-    "start": "vite --mode watch",
-    "dev": "yarn clean && vite --mode development && yarn html && yarn style:media",
-    "build": "yarn clean && vite build --mode production && yarn html && yarn style:media",
+    "dev": "vite --mode watch",
+    "start": "pnpm dev",
     "preview": "vite preview",
+    "build:dev": "pnpm clean && vite build --mode development && pnpm html && pnpm style:media",
+    "build:prod": "pnpm clean && vite build --mode production && pnpm html && pnpm style:media",
+    "build": "pnpm build:prod",
     "html": "node htmlBeautify.mjs",
     "style:media": "node mediaQueries.mjs",
     "clean": "rimraf dist"
@@ -43,8 +45,8 @@
     "vite-plugin-live-reload": "^3.0.5"
   },
   "comments": {
-    "npm-check-updates": "$ yarn ncu, $ yarn ncu -u, $ yarn ncu --upgrade --target minor, $ yarn ncu -u --target patch",
-    "yarn": "yarn cache clean",
+    "npm-check-updates": "$ pnpm ncu, $ pnpm ncu -u, $ pnpm ncu --upgrade --target minor, $ pnpm ncu -u --target patch",
+    "pnpm": "pnpm cache clean",
     "NOTE": ""
   }
 }
