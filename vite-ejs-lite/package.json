@@ -1,7 +1,7 @@
 {
   "name": "vite-ejs-lite-template",
   "description": "Vite + ejs + Sass + Babel",
-  "version": "1.4.4",
+  "version": "1.4.6",
   "keywords": [
     "Vite",
     "ejs",
@@ -20,7 +20,12 @@
     "build": "pnpm build:prod",
     "html": "node htmlBeautify.mjs",
     "style:media": "node mediaQueries.mjs",
-    "clean": "rimraf dist"
+    "clean:cache": "pnpm store prune",
+    "clean:dist": "rimraf dist",
+    "clean:all": "pnpm clean:cache && pnpm clean:dist",
+    "update:list": "pnpm outdated",
+    "update:dev": "pnpm update",
+    "update:all": "pnpm update -L"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -33,7 +38,6 @@
     "fs-extra": "^11.3.2",
     "glob": "^13.0.0",
     "js-beautify": "^1.15.4",
-    "npm-check-updates": "^19.1.2",
     "postcss": "^8.5.6",
     "postcss-sort-media-queries": "^5.2.0",
     "rimraf": "^6.1.2",
@@ -45,8 +49,7 @@
     "vite-plugin-live-reload": "^3.0.5"
   },
   "comments": {
-    "npm-check-updates": "$ pnpm ncu, $ pnpm ncu -u, $ pnpm ncu --upgrade --target minor, $ pnpm ncu -u --target patch",
-    "pnpm": "pnpm cache clean",
+    "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",
     "NOTE": ""
   }
 }

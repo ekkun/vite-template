@@ -1,7 +1,7 @@
 {
   "name": "vite-pug-template",
   "description": "Vite + Pug + Sass + Babel",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "keywords": [
     "Vite",
     "pug",
@@ -27,7 +27,12 @@
     "images:build": "node convertImage.mjs -i ./src/images -o ./dist/assets/images -m -w -t -v",
     "images:start": "node convertImage.mjs -i ./src/images -o ./.pnpm/temp/public/assets/images -m -w -t -v",
     "symlink": "node createSymlink.mjs",
-    "clean": "rimraf dist"
+    "clean:cache": "pnpm store prune",
+    "clean:dist": "rimraf dist",
+    "clean:all": "pnpm clean:cache && pnpm clean:dist",
+    "update:list": "pnpm outdated",
+    "update:dev": "pnpm update",
+    "update:all": "pnpm update -L"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -57,7 +62,6 @@
     "globals": "^16.5.0",
     "js-beautify": "^1.15.4",
     "markuplint": "^4.14.0",
-    "npm-check-updates": "^19.1.2",
     "postcss": "^8.5.6",
     "postcss-normalize-charset": "^7.0.1",
     "postcss-sort-media-queries": "^5.2.0",
@@ -82,9 +86,14 @@
     "last 3 versions",
     "ie >= 11"
   ],
+  "pnpm": {
+    "overrides": {
+      "glob": "^11.1.0",
+      "esbuild": "^0.25.0"
+    }
+  },
   "comments": {
-    "npm-check-updates": "$ pnpm ncu, $ pnpm ncu -u, $ pnpm ncu --upgrade --target minor, $ pnpm ncu -u --target patch",
-    "pnpm": "pnpm cache clean",
+    "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",
     "NOTE": "supports-color@8.1.1 を使用。debug等が10以降を要求してもアップデート不可。ESM化の影響を避けるため。"
   }
 }
