@@ -1,0 +1,12 @@
+/* =========================================
+  CSS Cascade Layer 設定 (2025最適バランス)
+  ※ 読み込み順で下ほど強くなるが、
+    layer は style.scss 側で制御しやすいように並列宣言
+========================================= */
+
+@layer reset; // 初期化
+@layer base; // ベース
+@layer layout; // 大枠配置
+@layer components; // UI パーツ
+@layer project; // ページ専用スコープ
+@layer utilities; // 単機能ユーティリティ

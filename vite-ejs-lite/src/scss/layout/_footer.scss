@@ -1,5 +1,10 @@
 // Footer
-@use '../global' as *;
+@use '../core' as *;
+
+// Setting
+//@use '../core/variables' as v;
+// Mixin
+//@use '../core/mixins' as m;
 
 .footer {
   color: #fff;

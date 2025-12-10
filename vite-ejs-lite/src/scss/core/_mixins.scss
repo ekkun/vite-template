@@ -1,0 +1,71 @@
+/* =================================
+  Mixins
+================================= */
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'functions' as *;
+@use 'variables' as *;
+
+/* media query */
+//@mixin media($key, $direction: up) {
+//  @if $direction == up {
+//    @media (width >= var(--breakpoint-#{$key})) {
+//      @content;
+//    }
+//  } @else if $direction == down {
+//    @media (width < var(--breakpoint-#{$key})) {
+//      @content;
+//    }
+//  } @else {
+//    @error "Invalid direction `#{$direction}`. Use 'up' or 'down'.";
+//  }
+//}
+
+@mixin media($key, $direction: up) {
+  @media #{breakpoint($key, $direction)} {
+    @content;
+  }
+}
+
+/* clear fix */
+@mixin clearfix {
+  zoom: 1;
+
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+/* フレックス中央揃え */
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* レスポンシブ簡易ラッパー
+   例: @include mq(768px) { ... } */
+@mixin mq($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+/* fluidな margin/padding など
+   例: @include fluid-space(margin-top, 1rem, 3rem); */
+@mixin fluid-space($property, $min, $max, $viewport-unit: 1vw) {
+  #{$property}: clamp(#{$min}, #{$viewport-unit} + #{$min}, #{$max});
+}
+
+/* 複数 shadow の中くらいの強さ
+   ※ CSS変数 --shadow-md があればそちらを優先 */
+@mixin shadow-md {
+  box-shadow: var(--shadow-md, 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.12));
+}

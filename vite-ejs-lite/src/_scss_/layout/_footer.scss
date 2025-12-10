@@ -1,11 +1,13 @@
-// Header
-@use '../core' as *;
+// Footer
+@use '../global' as *;
 
-.header {
-  padding: 0;
+.footer {
   color: #fff;
-  margin: 0;
   background-color: var(--blue);
+
+  @include media(pc-lg, up) {
+    margin: 0 0 10rem;
+  }
 
   @include media(md, up) {
     color: #000;

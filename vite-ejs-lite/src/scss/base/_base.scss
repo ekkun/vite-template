@@ -1,0 +1,34 @@
+/* =========================================
+  Base Style (CSS変数ベース)
+========================================= */
+
+@layer base {
+  html {
+    font-family: var(--font-family-base);
+    font-size: var(--font-base); /* 推奨16px */
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+
+  body {
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  img {
+    height: auto;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  /* アプリ的UI操作感 */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
