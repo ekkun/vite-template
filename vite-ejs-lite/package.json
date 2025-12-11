@@ -1,7 +1,7 @@
 {
   "name": "vite-ejs-lite-template",
   "description": "Vite + ejs + Sass + Babel",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "keywords": [
     "Vite",
     "ejs",
@@ -15,14 +15,15 @@
     "dev": "vite --mode watch",
     "start": "pnpm dev",
     "preview": "vite preview",
-    "build:dev": "pnpm clean && vite build --mode development && pnpm html && pnpm style:media",
-    "build:prod": "pnpm clean && vite build --mode production && pnpm html && pnpm style:media",
+    "build:dev": "pnpm clean:all && vite build --mode development && pnpm html && pnpm style:media",
+    "build:prod": "pnpm clean:all && vite build --mode production && pnpm html && pnpm style:media",
     "build": "pnpm build:prod",
     "html": "node htmlBeautify.mjs",
     "style:media": "node mediaQueries.mjs",
     "clean:cache": "pnpm store prune",
     "clean:dist": "rimraf dist",
-    "clean:all": "pnpm clean:cache && pnpm clean:dist",
+    "clean:node": "rimraf node_modules",
+    "clean:all": "pnpm clean:cache && pnpm clean:dist && pnpm clean:node",
     "update:list": "pnpm outdated",
     "update:dev": "pnpm update",
     "update:all": "pnpm update -L"
@@ -41,9 +42,9 @@
     "postcss": "^8.5.6",
     "postcss-sort-media-queries": "^5.2.0",
     "rimraf": "^6.1.2",
-    "sass": "^1.94.2",
+    "sass": "^1.95.0",
     "terser": "^5.44.1",
-    "vite": "^7.2.6",
+    "vite": "^7.2.7",
     "vite-plugin-ejs": "^1.7.0",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-live-reload": "^3.0.5"
@@ -51,5 +52,8 @@
   "comments": {
     "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",
     "NOTE": ""
+  },
+  "dependencies": {
+    "kiso.css": "^1.2.2"
   }
 }

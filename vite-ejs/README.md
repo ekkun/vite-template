@@ -19,7 +19,6 @@ Vite + ejs + Sass + Babel を使用したビルドツールのスターターキ
 $ pnpm i
 ```
 
-
 > [!WARNING]
 > Windows 環境の方は必読ください！
 
@@ -32,7 +31,6 @@ Windows 環境で `pnpm install` を実行すると、画像処理ライブラ�
 
 `pnpm install` でコケるハズです  
 そのため以下の設定をお願いします
-
 
 [convertImage.mjs: 14行目をコメントアウト、15行目をコメント削除](https://github.com/ekkun/vite-template/blob/main/vite_ejs/convertImage.mjs#L14-L15)
 
@@ -155,6 +153,7 @@ $ pnpm images
 ├─ pnpm-lock.yaml
 ├─ pnpm-workspace.yaml
 ├─ postcss.config.js
+├─ processCssFiles.mjs
 ├─ README.md
 ├─ svgo.config.js
 ├─ tailwind.config.js

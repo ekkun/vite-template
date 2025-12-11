@@ -1,0 +1,44 @@
+/* =================================
+  Mixins
+================================= */
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'functions' as *;
+@use 'variables' as *;
+
+/* media query */
+//@mixin mq($key, $direction: up) {
+//  @if $direction == up {
+//    @media (width >= var(--breakpoint-#{$key})) {
+//      @content;
+//    }
+//  } @else if $direction == down {
+//    @media (width < var(--breakpoint-#{$key})) {
+//      @content;
+//    }
+//  } @else {
+//    @error "Invalid direction `#{$direction}`. Use 'up' or 'down'.";
+//  }
+//}
+
+@mixin mq($key, $direction: up) {
+  @media #{breakpoint($key, $direction)} {
+    @content;
+  }
+}
+
+/* clear fix */
+@mixin clearfix {
+  zoom: 1;
+
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+  }
+
+  &::after {
+    clear: both;
+  }
+}

@@ -1,0 +1,37 @@
+/* ================================
+  SCSS Functions (2025実務特化)
+================================ */
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'variables' as *;
+
+/* px → rem変換 (ベース16px) */
+@function rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+}
+
+/* z-index取得（map管理と相性が良い） */
+@function z($key) {
+  @return map-get($z-map, $key);
+}
+
+/* Color操作 */
+@function tint($color, $percent) {
+  @return mix(white, $color, $percent);
+}
+
+@function shade($color, $percent) {
+  @return mix(black, $color, $percent);
+}
+
+/* Breakpoint */
+@function breakpoint($key, $direction: up) {
+  @if $direction == up {
+    @return map.get($breakpoint-up, $key);
+  } @else if $direction == down {
+    @return map.get($breakpoint-down, $key);
+  } @else {
+    @error 'breakpoint()の第2引数は up か down にしてください。';
+  }
+}

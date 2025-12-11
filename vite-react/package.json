@@ -1,7 +1,7 @@
 {
   "name": "vite-react-template",
   "description": "Vite + React + Sass + Babel",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "keywords": [
     "Vite",
     "react",
@@ -19,7 +19,8 @@
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "clean:cache": "pnpm store prune",
     "clean:dist": "rm -rf dist",
-    "clean:all": "pnpm clean:cache && pnpm clean:dist",
+    "clean:node": "rm -rf node_modules",
+    "clean:all": "pnpm clean:cache && pnpm clean:dist && pnpm clean:node",
     "update:list": "pnpm outdated",
     "update:dev": "pnpm update",
     "update:all": "pnpm update -L"

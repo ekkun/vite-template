@@ -5,7 +5,7 @@
 */src/public/assets/images/
 !vite_pug/src/public/assets/images/
 
-vendor
+#vendor
 debug.php
 .env
 _datacache

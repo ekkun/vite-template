@@ -1,11 +1,30 @@
-@charset "UTF-8";
+/* =====================================
+  Global entry style sheet
+===================================== */
 
-/* purgecss start ignore */
-@use 'foundation';
-@use 'layout';
-@use 'object/component';
-/* purgecss end ignore */
+@charset "utf-8";
+@use 'sass:meta';
 
-@use 'object/project';
-@use 'object/utility';
-@use 'pages';
+/* レイヤー宣言だけ */
+@use 'core/config.layer';
+
+/* コア（変数・関数・mixin） */
+@use 'core/index' as core;
+
+/* base層（中で @layer reset/base を定義） */
+@use 'base/index' as *;
+
+/* vendor層：外部ライブラリ（Splide など） */
+@use 'vendor/index' as *;
+
+/* layout層 */
+@use 'layout/index' as *;
+
+/* components層 */
+@use 'components/index' as *;
+
+/* project層（ページ単位） */
+@use 'project/index' as *;
+
+/* utilities層（最後に勝つ） */
+@use 'utilities/index' as *;
