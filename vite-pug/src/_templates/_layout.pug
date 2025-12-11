@@ -62,10 +62,13 @@ html(lang='ja')
 
       meta(property="og:image", content=``)
 
-      //block style
+      block style
         //-
           link(rel="shortcut icon", href=`${ filePath }assets/images/favicon/favicon.ico`)
-        //link(rel='stylesheet', href=`${ filePath }assets/css/style.css`)
+          link(rel='stylesheet', href=`${ filePath }assets/css/style.css`)
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap", rel="stylesheet")
 
       //-
         script(src="https://www.googletagmanager.com/gtag/js?id=", async)

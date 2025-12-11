@@ -1,8 +1,7 @@
 /**
  * TEST
  */
-import * as jQuery from 'jquery';
-//import * as jQuery from 'https://esm.sh/jquery@3.7.1';
+import * as jQuery from 'https://esm.sh/jquery@3.7.1';
 const $ = jQuery.default || jQuery;
 
 (() => {
