@@ -51,5 +51,8 @@
   "comments": {
     "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",
     "NOTE": ""
+  },
+  "dependencies": {
+    "kiso.css": "^1.2.2"
   }
 }

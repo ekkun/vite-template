@@ -3,7 +3,7 @@
 
 .main {
   .tab\:hidden {
-    @include media(md, down) {
+    @include mq(md, down) {
       display: none;
     }
   }

@@ -1,6 +1,9 @@
 /* =====================================
-  Global entry stylesheet (Vite用)
+  Global entry style sheet
 ===================================== */
+
+@charset "utf-8";
+@use 'sass:meta';
 
 /* レイヤー宣言だけ */
 @use 'core/config.layer';
@@ -10,6 +13,9 @@
 
 /* base層（中で @layer reset/base を定義） */
 @use 'base/index' as *;
+
+/* vendor層：外部ライブラリ（Splide など） */
+@use 'vendor/index' as *;
 
 /* layout層 */
 @use 'layout/index' as *;
