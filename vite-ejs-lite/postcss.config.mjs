@@ -3,6 +3,7 @@
 import autoprefixer from 'autoprefixer';
 import sortMediaQueries from 'postcss-sort-media-queries';
 import cssDeclarationSorter from 'css-declaration-sorter';
+import mergeAtRules from 'postcss-merge-at-rules';
 import purgecssModule from '@fullhuman/postcss-purgecss';
 
 // CJS / ESM 両対応で関数を取り出す
@@ -14,6 +15,11 @@ export default ({ env }) => ({
 
     cssDeclarationSorter({
       order: 'smacss'
+    }),
+
+    mergeAtRules({
+      atRulePattern: /(media|layer|supports|container|scope)/im,
+      nest: true
     }),
 
     sortMediaQueries({
