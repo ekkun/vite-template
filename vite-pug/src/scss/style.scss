@@ -2,6 +2,8 @@
   Global entry style sheet
 ===================================== */
 
+// @layer reset, base, vendor, layout, components, project, utilities;
+
 @charset "utf-8";
 @use 'sass:meta';
 
@@ -15,16 +17,26 @@
 @use 'base/index' as *;
 
 /* vendor層：外部ライブラリ（Splide など） */
-@use 'vendor/index' as *;
+@layer vendor {
+  @include meta.load-css('vendor/index');
+}
 
 /* layout層 */
-@use 'layout/index' as *;
+@layer layout {
+  @include meta.load-css('layout/index');
+}
 
 /* components層 */
-@use 'components/index' as *;
+@layer components {
+  @include meta.load-css('components/index');
+}
 
 /* project層（ページ単位） */
-@use 'project/index' as *;
+@layer project {
+  @include meta.load-css('project/index');
+}
 
 /* utilities層（最後に勝つ） */
-@use 'utilities/index' as *;
+@layer utilities {
+  @include meta.load-css('utilities/index');
+}

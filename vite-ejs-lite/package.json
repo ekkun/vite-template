@@ -15,8 +15,8 @@
     "dev": "vite --mode watch",
     "start": "pnpm dev",
     "preview": "vite preview",
-    "build:dev": "pnpm clean:all && vite build --mode development && pnpm html && pnpm style:media",
-    "build:prod": "pnpm clean:all && vite build --mode production && pnpm html && pnpm style:media",
+    "build:dev": "pnpm clean:dist && vite build --mode development && pnpm html && pnpm style:media",
+    "build:prod": "pnpm clean:dist && vite build --mode production && pnpm html && pnpm style:media",
     "build": "pnpm build:prod",
     "html": "node htmlBeautify.mjs",
     "style:media": "node mediaQueries.mjs",
@@ -40,6 +40,7 @@
     "glob": "^13.0.0",
     "js-beautify": "^1.15.4",
     "postcss": "^8.5.6",
+    "postcss-merge-at-rules": "^1.2.0",
     "postcss-sort-media-queries": "^5.2.0",
     "rimraf": "^6.1.2",
     "sass": "^1.95.0",
@@ -54,6 +55,6 @@
     "NOTE": ""
   },
   "dependencies": {
-    "kiso.css": "^1.2.2"
+    "kiso.css": "^1.2.3"
   }
 }
