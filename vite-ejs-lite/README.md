@@ -90,6 +90,7 @@ $ pnpm build:prod
 ├─ .env.watch
 ├─ .gitignore
 ├─ .prettierrc
+├─ .eslintrc.mjs
 ├─ htmlBeautify.mjs
 ├─ mediaQueries.mjs
 ├─ package.json

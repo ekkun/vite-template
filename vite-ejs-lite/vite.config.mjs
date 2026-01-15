@@ -134,7 +134,7 @@ export default defineConfig(({ mode }) => {
       modulePreload: { polyfill: false },
       assetsInlineLimit: 0,
       minify: 'esbuild',
-      target: 'es2015',
+      target: 'es2015', // 'es2020', 'es2022'
       rollupOptions: {
         input: inputObject,
         output: {
@@ -154,6 +154,20 @@ export default defineConfig(({ mode }) => {
               return 'assets/images/[name].[ext]';
             }
             return 'assets/[name].[ext]';
+          }
+        }
+      },
+      html: {
+        minify: true,
+        inject: {
+          injectTo: 'body',
+          exclude: [],
+          excludeAssets: [],
+          attrs: {
+            link: {
+              crossorigin: undefined
+            }
+            // return 'assets/[name].[ext]';
           }
         }
       }
