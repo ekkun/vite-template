@@ -4,8 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vitePluginPug from './plugins/vite-plugin-pug';
 import liveReload from 'vite-plugin-live-reload';
-import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -120,38 +118,37 @@ export default defineConfig(({ mode }) => {
       modulePreload: { polyfill: false },
       //cssMinify: false,
       assetsInlineLimit: 0,
-      rollupOptions: {
+      minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
+      target: 'es2015', // 'es2020', 'es2022'
+      rolldownOptions: {
+        input: inputObject,
         output: {
+          // JS
+          entryFileNames: 'assets/js/[name].js',
+          chunkFileNames: 'assets/js/[name].js',
+          // CSS / 画像 / フォントなど
           assetFileNames: (assetInfo) => {
-            let extType = assetInfo.name.split('.').pop();
-            if (/ttf|otf|eot|woff|woff2/i.test(extType)) {
-              extType = 'fonts';
+            const candidate = (typeof assetInfo?.name === 'string' && assetInfo.name) || (Array.isArray(assetInfo?.names) && assetInfo.names.find((s) => typeof s === 'string')) || '';
+            const n = candidate.replace(/\\/g, '/');
+            const ext = n.includes('.') ? n.split('.').pop() : '';
+
+            if (/ttf|otf|eot|woff2?/i.test(ext)) {
+              return 'assets/fonts/[name].[ext]';
             }
-            if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(extType)) {
-              let originalFileName = assetInfo.originalFileName;
-              if (originalFileName) {
-                return `assets/${originalFileName}`;
-              } else {
-                return 'assets/images/[name].[ext]';
-              }
-            }
-            if (extType === 'css') {
-              return 'assets/css/[name].css';
-            }
-            if (/\.css$/.test(assetInfo.name)) {
+            if (/css/i.test(ext)) {
               return 'assets/css/[name].[ext]';
             }
+            if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(ext)) {
+              return 'assets/images/[name].[ext]';
+            }
             return 'assets/[name].[ext]';
-          },
-          chunkFileNames: `assets/js/[name].js`,
-          entryFileNames: `assets/js/[name].js`
-        },
-        input: inputObject
+          }
+        }
       }
     },
 
     optimizeDeps: {
-      include: ['@babel/runtime/regenerator']
+      //include: ['@babel/runtime/regenerator']
     },
 
     define: {
@@ -171,13 +168,6 @@ export default defineConfig(({ mode }) => {
           options: { pretty: true }
         }
       }),
-      babel({
-        babelHelpers: 'runtime',
-        exclude: ['node_modules/**'],
-        presets: ['@babel/preset-env'],
-        plugins: ['@babel/plugin-transform-runtime']
-      }),
-      commonjs(),
       crossorigin({}),
       generateBundle({}),
       removeComments()

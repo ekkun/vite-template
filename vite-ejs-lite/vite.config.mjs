@@ -35,7 +35,7 @@ const inputJsArray = globSync('src/js/*.js', {
   return [name, fileURLToPath(new URL(file, import.meta.url))];
 });
 
-// Rollup 用 input オブジェクト
+// Rolldown 用 input オブジェクト
 const inputObject = Object.fromEntries(inputJsArray.concat(inputHtmlArray, inputScssArray));
 console.info('[vite_ejs_lite] entrypoints:', inputObject);
 
@@ -133,9 +133,9 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       modulePreload: { polyfill: false },
       assetsInlineLimit: 0,
-      minify: 'esbuild',
+      minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
       target: 'es2015', // 'es2020', 'es2022'
-      rollupOptions: {
+      rolldownOptions: {
         input: inputObject,
         output: {
           // JS
@@ -143,7 +143,10 @@ export default defineConfig(({ mode }) => {
           chunkFileNames: 'assets/js/[name].js',
           // CSS / 画像 / フォントなど
           assetFileNames: (assetInfo) => {
-            const ext = assetInfo.name.split('.').pop();
+            const candidate = (typeof assetInfo?.name === 'string' && assetInfo.name) || (Array.isArray(assetInfo?.names) && assetInfo.names.find((s) => typeof s === 'string')) || '';
+            const n = candidate.replace(/\\/g, '/');
+            const ext = n.includes('.') ? n.split('.').pop() : '';
+
             if (/ttf|otf|eot|woff2?/i.test(ext)) {
               return 'assets/fonts/[name].[ext]';
             }
