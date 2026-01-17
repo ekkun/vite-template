@@ -1,15 +1,7 @@
 /* ==========================================================
   Settings (Sass only)
   - No CSS output
-  - Variables / maps / breakpoints only
 ========================================================== */
-
-// SCSS Alias
-$z-map: (
-  header: var(--z-header),
-  modal: var(--z-modal),
-  toast: var(--z-toast)
-);
 
 // Breakpoint variables
 $xs: 320px;

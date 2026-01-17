@@ -98,6 +98,8 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    appType: 'mpa',
+
     root: path.resolve(__dirname, './src'),
     base: isProduction ? '/' : '/',
 
@@ -149,6 +151,9 @@ export default defineConfig(({ mode }) => {
             const n = candidate.replace(/\\/g, '/');
             const ext = n.includes('.') ? n.split('.').pop() : '';
 
+            if (/html/i.test(ext)) {
+              return assetInfo.name;
+            }
             if (/ttf|otf|eot|woff2?/i.test(ext)) {
               return 'assets/fonts/[name].[ext]';
             }

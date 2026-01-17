@@ -1,15 +1,7 @@
 /* ==========================================================
   Settings (Sass only)
   - No CSS output
-  - Variables / maps / breakpoints only
 ========================================================== */
-
-// SCSS Alias
-$z-map: (
-  header: var(--z-header),
-  modal: var(--z-modal),
-  toast: var(--z-toast)
-);
 
 // Breakpoint variables
 $xs: 320px;
@@ -34,7 +26,7 @@ $breakpoint-up: (
   'xl': '(width >= #{$xl})',
   'pc': '(width >= #{$pc})',
   'pc-md': '(width >= #{$pc-md})',
-  'pc-lg': '(width >= #{$pc-lg})'
+  'pc-lg': '(width >= #{$pc-lg})',
 ) !default;
 
 // max-width
@@ -48,5 +40,5 @@ $breakpoint-down: (
   'xl': '(width < #{($xl - 1)})',
   'pc': '(width < #{($pc - 1)})',
   'pc-md': '(width < #{($pc-md - 1)})',
-  'pc-lg': '(width < #{($pc-lg - 1)})'
+  'pc-lg': '(width < #{($pc-lg - 1)})',
 ) !default;

@@ -78,7 +78,7 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
-    appType: 'spa',
+    appType: 'mpa',
 
     server: {
       port: 4000,
@@ -149,13 +149,9 @@ export default defineConfig(({ mode }) => {
       }
     },
 
-    optimizeDeps: {
+    optimizeDeps: {},
 
-    },
-
-    define: {
-
-    },
+    define: {},
 
     plugins: [
       liveReload(['src/**/*.pug']),
