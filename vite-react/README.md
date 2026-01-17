@@ -47,8 +47,6 @@ $ pnpm build
 ## ディレクトリ構成
 
 ```
-├─ .yarn/
-│
 ├─ dist/ (ビルド後、納品ファイルがここに生成されます)
 │  ├─ assets/
 │  │  ├─ css/
@@ -77,6 +75,5 @@ $ pnpm build
 ├─ postcss.config.cjs
 ├─ README.md
 ├─ tsconfig.json
-├─ vite.config.ts
-└─ yarn.lock
+└─ vite.config.ts
 ```
