@@ -1,12 +1,11 @@
 {
   "name": "vite-ejs-template",
-  "description": "Vite + ejs + Sass + Babel",
-  "version": "1.4.8",
+  "description": "Vite + ejs + Sass",
+  "version": "1.4.9",
   "keywords": [
     "Vite",
     "ejs",
-    "scss",
-    "babel"
+    "scss"
   ],
   "author": "e@oshinco.com",
   "license": "Oshinco Co-op",
@@ -38,32 +37,25 @@
     "update:all": "pnpm update -L"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.5",
-    "@babel/plugin-transform-arrow-functions": "^7.27.1",
-    "@babel/plugin-transform-runtime": "^7.28.5",
-    "@babel/preset-env": "^7.28.5",
-    "@babel/runtime": "^7.28.4",
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@img/sharp-win32-x64": "^0.34.5",
     "@markuplint/ejs-parser": "^4.6.22",
-    "@rollup/plugin-babel": "^6.1.0",
-    "@rollup/plugin-commonjs": "^29.0.0",
-    "autoprefixer": "^10.4.22",
-    "babel-plugin-import": "^1.13.8",
+    "autoprefixer": "^10.4.23",
     "commander": "^14.0.2",
-    "css-declaration-sorter": "^7.3.0",
+    "css-declaration-sorter": "^7.3.1",
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "ejs-lint": "^2.0.1",
-    "eslint": "^9.39.1",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.39.2",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "fs-extra": "^11.3.2",
+    "fs-extra": "^11.3.3",
     "glob": "^13.0.0",
-    "globals": "^16.5.0",
+    "globals": "^17.0.0",
     "js-beautify": "^1.15.4",
     "markuplint": "^4.14.0",
     "postcss": "^8.5.6",
@@ -72,11 +64,10 @@
     "postcss-sort-media-queries": "^5.2.0",
     "prettier": "^3.7.4",
     "rimraf": "^6.1.2",
-    "rollup": "^4.53.3",
-    "sass-embedded": "^1.93.3",
+    "sass-embedded": "^1.97.2",
     "sharp": "^0.34.5",
     "svgo": "^4.0.0",
-    "vite": "^7.2.7",
+    "vite": "npm:rolldown-vite@latest",
     "vite-plugin-ejs": "^1.7.0",
     "vite-plugin-handlebars": "^2.0.0",
     "vite-plugin-html": "^3.2.2",
@@ -84,9 +75,9 @@
   },
   "dependencies": {
     "jquery": "^3.7.1",
-    "kiso.css": "^1.2.2",
+    "kiso.css": "^1.2.3",
     "supports-color": "10.2.2",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.18"
   },
   "browserslist": [
     "last 3 versions",
@@ -96,7 +87,11 @@
     "overrides": {
       "glob": "^11.1.0",
       "esbuild": "^0.25.0"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   },
   "comments": {
     "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",

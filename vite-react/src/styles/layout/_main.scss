@@ -1,5 +1,10 @@
 // Main
-@use '../global' as *;
+@use '../core' as *;
 
 .main {
+  .tab\:hidden {
+    @include mq(md, down) {
+      display: none;
+    }
+  }
 }

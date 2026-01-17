@@ -69,6 +69,7 @@ export default defineConfig(({ mode }) => {
     },
 
     css: {
+      transformer: 'postcss',
       devSourcemap: true,
       preprocessorOptions: {
         scss: {
@@ -81,36 +82,28 @@ export default defineConfig(({ mode }) => {
       outDir: '../dist',
       emptyOutDir: true,
       modulePreload: { polyfill: false },
-      assetsInlineLimit: 0,
-      minify: 'esbuild',
-      target: 'es2015',
-
-      // CSS は 1 ファイルにまとめる
       cssCodeSplit: false,
-
-      rollupOptions: {
-        // ★ エントリは HTML だけ
+      cssMinify: 'esbuild',
+      assetsInlineLimit: 0,
+      minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
+      target: 'es2020', // 'es2015', 'es2020', 'es2022'
+      rolldownOptions: {
         input: inputObject,
-
         output: {
-          // ★ JS を 1 ファイルにまとめ、ファイル名を固定
-          //entryFileNames: 'assets/js/main.js',
-          //chunkFileNames: 'assets/js/main.js',
-          chunkFileNames: `assets/js/[name].js`,
-          entryFileNames: `assets/js/[name].js`,
-          manualChunks: undefined,
-
-          // ★ CSS / 画像 / フォントなどの出力先
+          // JS
+          entryFileNames: 'assets/js/[name].js',
+          chunkFileNames: 'assets/js/[name].js',
+          // CSS / 画像 / フォントなど
           assetFileNames: (assetInfo) => {
-            const name = assetInfo.name ?? '';
-            const ext = name.split('.').pop()?.toLowerCase() ?? '';
+            const candidate = (typeof assetInfo?.name === 'string' && assetInfo.name) || (Array.isArray(assetInfo?.names) && assetInfo.names.find((s) => typeof s === 'string')) || '';
+            const n = candidate.replace(/\\/g, '/');
+            const ext = n.includes('.') ? n.split('.').pop() : '';
 
             if (/ttf|otf|eot|woff2?/i.test(ext)) {
               return 'assets/fonts/[name].[ext]';
             }
-            if (ext === 'css') {
-              // CSS は 1つだけ出る想定なので固定名
-              return 'assets/css/style.css';
+            if (/css/i.test(ext)) {
+              return 'assets/css/[name].[ext]';
             }
             if (/png|jpe?g|webp|svg|gif|tiff|bmp|ico/i.test(ext)) {
               return 'assets/images/[name].[ext]';

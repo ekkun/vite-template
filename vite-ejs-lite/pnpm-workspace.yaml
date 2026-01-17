@@ -1,1 +1,7 @@
 minimumReleaseAge: 2880
+minimumReleaseAgeExclude:
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js
+  - esbuild

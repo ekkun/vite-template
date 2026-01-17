@@ -1,0 +1,52 @@
+/* ==========================================================
+  Settings (Sass only)
+  - No CSS output
+  - Variables / maps / breakpoints only
+========================================================== */
+
+// SCSS Alias
+$z-map: (
+  header: var(--z-header),
+  modal: var(--z-modal),
+  toast: var(--z-toast)
+);
+
+// Breakpoint variables
+$xs: 320px;
+$s: 375px;
+$sm: 425px;
+$md: 768px;
+$lg: 960px;
+$tab: 1024px;
+$xl: 1280px;
+$pc: 1280px;
+$pc-md: 1440px;
+$pc-lg: 1608px;
+
+// min-width
+$breakpoint-up: (
+  'xs': '(width >= #{$xs})',
+  's': '(width >= #{$s})',
+  'sm': '(width >= #{$sm})',
+  'md': '(width >= #{$md})',
+  'lg': '(width >= #{$lg})',
+  'tab': '(width >= #{$tab})',
+  'xl': '(width >= #{$xl})',
+  'pc': '(width >= #{$pc})',
+  'pc-md': '(width >= #{$pc-md})',
+  'pc-lg': '(width >= #{$pc-lg})'
+) !default;
+
+// max-width
+$breakpoint-down: (
+  'xs': '(width < #{($xs - 1)})',
+  's': '(width < #{($s - 1)})',
+  'sm': '(width < #{($sm - 1)})',
+  'md': '(width < #{($md - 1)})',
+  'lg': '(width < #{($lg - 1)})',
+  'tab': '(width < #{($tab - 1)})',
+  'xl': '(width < #{($xl - 1)})',
+  'pc': '(width < #{($pc - 1)})',
+  'pc-md': '(width < #{($pc-md - 1)})',
+  'pc-lg': '(width < #{($pc-lg - 1)})'
+) !default;

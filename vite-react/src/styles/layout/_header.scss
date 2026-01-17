@@ -1,5 +1,26 @@
 // Header
-@use '../global' as *;
+@use '../core' as *;
 
 .header {
+  padding: 0;
+  color: #fff;
+  margin: 0;
+  background-color: var(--blue);
+
+  @include mq(md, up) {
+    color: #000;
+    background-color: var(--orange);
+  }
+
+  @include mq(tab, up) {
+    background-color: var(--gray);
+  }
+
+  @include mq(xl, up) {
+    background-color: var(--purple);
+  }
+
+  @include mq(pc-lg, up) {
+    background-color: var(--green);
+  }
 }

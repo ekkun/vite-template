@@ -1,5 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Sample
 
-@layer utilities {}
+@scope (.sample) {
+  :where(h1, h2, h3, h4, h5, h6) {
+    color: red;
+  }
+}

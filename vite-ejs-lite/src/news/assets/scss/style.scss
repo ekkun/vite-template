@@ -1,0 +1,42 @@
+/* =====================================
+  News style sheet
+===================================== */
+
+// @layer reset, base, vendor, layout, components, project, utilities;
+
+@charset "utf-8";
+@use 'sass:meta';
+
+/* レイヤー宣言だけ */
+@use '../../../scss/core/config.layer';
+
+/* コア（変数・関数・mixin） */
+@use '../../../scss/core/index' as core;
+
+/* base層（中で @layer reset/base を定義） */
+@use '../../../scss/base/index' as *;
+
+/* vendor層：外部ライブラリ（Splide など） */
+@layer vendor {
+  @include meta.load-css('../../../scss/vendor/index');
+}
+
+/* layout層 */
+@layer layout {
+  @include meta.load-css('../../../scss/layout/index');
+}
+
+/* components層 */
+@layer components {
+  @include meta.load-css('../../../scss/components/index');
+}
+
+/* project層（ページ単位） */
+@layer project {
+  @include meta.load-css('../../../scss/project/index');
+}
+
+/* utilities層（最後に勝つ） */
+@layer utilities {
+  @include meta.load-css('../../../scss/utilities/index');
+}
