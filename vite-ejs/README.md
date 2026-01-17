@@ -1,12 +1,12 @@
 # Vite + EJS Template
 
-Vite + ejs + Sass + Babel を使用したビルドツールのスターターキット。
+Vite + ejs + Sass を使用したビルドツールのスターターキット。
 
 (macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
 
 - html, ejs -> html
 - Sass -> css
-- Babel -> js
+- js -> js
 - png -> png, webp
 - jpg -> jpg, webp
 - svg -> minify
@@ -143,7 +143,6 @@ $ pnpm images
 ├─ .markuplintrc
 ├─ .ncurc.json
 ├─ .prettierrc.json
-├─ babel.babelrc
 ├─ convertImage.mjs
 ├─ createSymlink.mjs
 ├─ eslint.config.mjs

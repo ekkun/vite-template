@@ -11,7 +11,7 @@
 @use 'core/config.layer';
 
 /* コア（変数・関数・mixin） */
-@use 'core/index' as core;
+//@use 'core/index' as core;
 
 /* base層（中で @layer reset/base を定義） */
 @use 'base/index' as *;

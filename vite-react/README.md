@@ -1,6 +1,6 @@
 # Vite + React Template
 
-Vite + React + Sass + Babel を使用したビルドツールのスターターキット。
+Vite + React + Sass を使用したビルドツールのスターターキット。
 
 (macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
 
@@ -70,7 +70,6 @@ $ pnpm build
 │  ├─ styles/
 │  └─ index.html
 │
-├─ .babelrc
 ├─ eslint.config.mjs
 ├─ package.json
 ├─ pnpm-lock.yaml

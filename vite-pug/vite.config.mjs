@@ -104,6 +104,7 @@ export default defineConfig(({ mode }) => {
     root: path.resolve(__dirname, './src'),
 
     css: {
+      transformer: 'postcss',
       devSourcemap: true,
       preprocessorOptions: {
         scss: {
@@ -117,9 +118,10 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       modulePreload: { polyfill: false },
       //cssMinify: false,
+      cssMinify: 'esbuild',
       assetsInlineLimit: 0,
       minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
-      target: 'es2015', // 'es2020', 'es2022'
+      target: 'es2020', // 'es2015', 'es2020', 'es2022'
       rolldownOptions: {
         input: inputObject,
         output: {
@@ -148,12 +150,11 @@ export default defineConfig(({ mode }) => {
     },
 
     optimizeDeps: {
-      //include: ['@babel/runtime/regenerator']
+
     },
 
     define: {
-      //$: 'window.jQuery',
-      //jQuery: 'window.jQuery'
+
     },
 
     plugins: [

@@ -5,7 +5,7 @@
 @use 'sass:map';
 @use 'sass:math';
 @use 'functions' as *;
-@use 'variables' as *;
+@use 'settings' as *;
 
 /* media query */
 //@mixin mq($key, $direction: up) {

@@ -120,6 +120,7 @@ export default defineConfig(({ mode }) => {
     },
 
     css: {
+      transformer: 'postcss',
       devSourcemap: true,
       preprocessorOptions: {
         scss: {
@@ -132,9 +133,10 @@ export default defineConfig(({ mode }) => {
       outDir: '../dist',
       emptyOutDir: true,
       modulePreload: { polyfill: false },
+      cssMinify: 'esbuild',
       assetsInlineLimit: 0,
       minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
-      target: 'es2015', // 'es2020', 'es2022'
+      target: 'es2020', // 'es2015', 'es2020', 'es2022'
       rolldownOptions: {
         input: inputObject,
         output: {

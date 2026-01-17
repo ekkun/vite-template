@@ -4,7 +4,7 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
-@use 'variables' as *;
+@use 'settings' as *;
 
 /* px → rem変換 (ベース16px) */
 @function rem($px, $base: 16) {

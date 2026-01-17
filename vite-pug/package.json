@@ -1,12 +1,11 @@
 {
   "name": "vite-pug-template",
-  "description": "Vite + Pug + Sass + Babel",
+  "description": "Vite + Pug + Sass",
   "version": "1.4.9",
   "keywords": [
     "Vite",
     "pug",
-    "scss",
-    "babel"
+    "scss"
   ],
   "author": "e@oshinco.com",
   "license": "Oshinco Co-op",
@@ -37,11 +36,6 @@
     "update:all": "pnpm update -L"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.6",
-    "@babel/plugin-transform-arrow-functions": "^7.27.1",
-    "@babel/plugin-transform-runtime": "^7.28.5",
-    "@babel/preset-env": "^7.28.6",
-    "@babel/runtime": "^7.28.6",
     "@eslint/js": "^9.39.2",
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@img/sharp-win32-x64": "^0.34.5",
@@ -92,7 +86,11 @@
     "overrides": {
       "glob": "^11.1.0",
       "esbuild": "^0.25.0"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   },
   "comments": {
     "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",
