@@ -20,7 +20,7 @@ const inputObject = Object.fromEntries(
     const name = path.relative('src', file.slice(0, file.length - path.extname(file).length)).replace(/\\/g, '/'); // Windows 対応
     const absPath = fileURLToPath(new URL(file, import.meta.url));
     return [name, absPath];
-  })
+  }),
 );
 
 console.info('[vite_mpa] entrypoints:', inputObject);
@@ -99,6 +99,9 @@ export default defineConfig(({ mode }) => {
             const n = candidate.replace(/\\/g, '/');
             const ext = n.includes('.') ? n.split('.').pop() : '';
 
+            if (/html/i.test(ext)) {
+              return assetInfo.name;
+            }
             if (/ttf|otf|eot|woff2?/i.test(ext)) {
               return 'assets/fonts/[name].[ext]';
             }
