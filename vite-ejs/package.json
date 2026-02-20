@@ -10,7 +10,7 @@
   "author": "e@oshinco.com",
   "license": "Oshinco Co-op",
   "scripts": {
-    "dev": "pnpm images:start && pnpm lint && vite --mode watch",
+    "dev": "pnpm images:start && pnpm lint && pnpm portless app pnpm exec vite --mode watch",
     "start": "pnpm dev",
     "preview": "pnpm images:start && pnpm lint && vite preview --mode production ",
     "build:dev": "pnpm clean:dist && vite build --mode development && pnpm html && pnpm images:build && pnpm style:media && pnpm style:process",
@@ -58,6 +58,7 @@
     "globals": "^17.0.0",
     "js-beautify": "^1.15.4",
     "markuplint": "^4.14.0",
+    "portless": "^0.3.0",
     "postcss": "^8.5.6",
     "postcss-merge-at-rules": "^1.2.0",
     "postcss-normalize-charset": "^7.0.1",

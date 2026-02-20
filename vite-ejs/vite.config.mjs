@@ -81,7 +81,10 @@ export default defineConfig(({ mode }) => {
     appType: 'mpa',
 
     server: {
-      port: 4000,
+      allowedHosts: ['.localhost'],
+      //allowedHosts: true,
+      port: Number(process.env.PORT ?? 4000),
+      //port: 4000,
       host: true,
       //open: '/index.html',
       strictPort: true,

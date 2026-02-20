@@ -104,7 +104,9 @@ export default defineConfig(({ mode }) => {
     base: isProduction ? '/' : '/',
 
     server: {
-      port: 4000,
+      allowedHosts: true,
+      port: Number(process.env.PORT ?? 4000),
+      //port: 4000,
       host: true,
       strictPort: true,
       watch: {
