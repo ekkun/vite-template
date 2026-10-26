@@ -4,13 +4,11 @@ export default {
       name: 'preset-default',
       params: {
         overrides: {
-          removeViewBox: false,
           cleanupAttrs: false,
           removeDoctype: true,
           removeXMLProcInst: true,
           removeComments: true,
           removeMetadata: true,
-          removeTitle: true,
           removeDesc: true,
           removeUselessDefs: true,
           removeEditorsNSData: true,
@@ -41,6 +39,7 @@ export default {
         },
       },
     },
+    'removeTitle',
     // style, id, class属性を保持する設定
     {
       name: 'removeAttrs',

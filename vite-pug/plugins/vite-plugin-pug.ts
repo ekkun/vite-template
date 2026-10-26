@@ -1,6 +1,6 @@
 import type { LocalsObject, Options } from "pug";
-import { vitePluginPugBuild } from "./vite-plugin-pug-build";
-import { vitePluginPugServe } from "./vite-plugin-pug-serve";
+import { vitePluginPugBuild } from "./vite-plugin-pug-build.ts";
+import { vitePluginPugServe } from "./vite-plugin-pug-serve.ts";
 
 // 引数の型定義
 type PugSettings = {

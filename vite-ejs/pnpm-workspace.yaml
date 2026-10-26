@@ -1,2 +1,5 @@
 minimumReleaseAge: 2880
-minimumReleaseAgeExclude:
+
+allowBuilds:
+  '@parcel/watcher': true
+  sharp: true

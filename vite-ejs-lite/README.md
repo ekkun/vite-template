@@ -1,110 +1,56 @@
 # Vite + EJS Lite Template
 
-Vite + ejs + Sass を使用したビルドツールのスターターキット。
+EJS、JavaScript、Sassで小規模な静的サイトを作るテンプレートです。画像最適化は含みません。
 
-(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
+## 必要な環境
 
-- html, ejs -> html
-- Sass -> css
-- js -> js
+- Node.js `^20.19.0 || >=22.12.0`
+- pnpm `10.32.1`
 
-## パッケージをインストール
+## 開始
 
-プロジェクトのディレクトリに移動して実行
-
-```
-$ pnpm i
+```sh
+pnpm install
+pnpm dev
 ```
 
-## Vite の監視
+<http://localhost:5173> を開きます。開発中は`dist`へ出力しません。
 
-監視開始
-ローカルサーバーが立ち上がり確認可能（[localhost:4000](http://localhost:4000)）  
-/dist/ には書き出されないので注意
+## コマンド
 
-```
-$ pnpm dev
-```
+| コマンド | 結果 |
+| --- | --- |
+| `pnpm dev` | 開発サーバーを起動する |
+| `pnpm build:dev` | 開発設定で`dist`へ生成する |
+| `pnpm build` | 公開設定で`dist`へ生成する |
+| `pnpm preview` | <http://localhost:8080> でビルド結果を確認する |
+| `pnpm test` | 共通要件を検査する |
 
-## 開発用ファイル生成
+## 最初に編集する場所
 
-開発用のファイル一式を生成
+- 共通EJSデータ: `src/_templates/_config.ejs`
+- ページ: `src/**/*.html`
+- JavaScript: `src/js`
+- Sass: `src/scss`
+- 静的ファイル: `src/public`
 
-```
-$ pnpm build:dev
-```
-
-## Vite のプレビュー
-
-公開用ファイルの確認
-ローカルサーバーが立ち上がり確認可能（[localhost:8080](http://localhost:8080)）  
-/dist/ には書き出されないので注意
-
-```
-$ pnpm preview
-```
-
-## 納品／アップロード用ファイル生成
-
-公開用ファイル一式を生成
-
-```
-$ pnpm build:prod
-```
-
-## EJS 設定
-
-設定用の EJS に初期の値を入力してください
-
-```
-./src/_templates/_config.ejs
-```
+共通仕様は[要件定義](../REQUIREMENTS.md)を参照してください。
 
 ## ディレクトリ構成
 
-```
-├─ dist/ (ビルド後、納品ファイルがここに生成されます)
-│  ├─ assets/
-│  │  ├─ css/
-│  │  ├─ fonts/
-│  │  ├─ images/
-│  │  └─ js/
-│  └─ index.html 他、ファイル、ディレクトリ群...
-│
-├─ node_modules/
-│  └─ パッケージ各種
-│
-├─ src/（ソース）
-│  ├─ _templates/
-│  ├─ about/
-│  ├─ images/ (画像ファイル一式はコピーされます)
-│  ├─ js/
-│  ├─ news/
-│  ├─ public/ (画像以外の静的ファイル一式はコピーされます)
-│  ├─ scss/
-│  └─ index.html
-│
-├─ .env.development
-├─ .env.production
-├─ .env.watch
-├─ .gitignore
-├─ .prettierrc
-├─ .eslintrc.mjs
-├─ htmlBeautify.mjs
-├─ mediaQueries.mjs
-├─ package.json
-├─ pnpm-lock.yaml
-├─ pnpm-workspace.yaml
-├─ README.md
-└─ vite.config.js
-```
-
-## 再インストール
-
-`pnpm` でエラーが出た場合は再インストールをしてください。
-
-```
-$ rm -rf node_modules
-$ pnpm cache clean
-$ pnpm install
+```text
+vite-ejs-lite/
+├── src/
+│   ├── _templates/     # 共通EJS
+│   ├── about/          # Aboutページ
+│   ├── news/           # Newsページ
+│   ├── js/             # JavaScript
+│   ├── scss/           # Sass
+│   ├── public/         # そのままコピーするファイル
+│   └── index.html      # トップページ
+├── htmlBeautify.mjs    # HTML整形
+├── mediaQueries.mjs    # メディアクエリ整理
+├── postcss.config.mjs  # CSS処理設定
+├── vite.config.mjs     # Vite設定
+└── package.json        # コマンドと依存関係
 ```
