@@ -1,79 +1,58 @@
 # Vite + React Template
 
-Vite + React + Sass を使用したビルドツールのスターターキット。
+React、TypeScript、Sassでサイトを作るテンプレートです。
 
-(macOS 26.1 / node v25.2.1 / pnpm v10.24.0 / 検証済み)
+## 必要な環境
 
-- HTML -> HTML
-- SCSS (Sass) -> CSS
-- JS / JSX / TS / TSX -> JS
+- Node.js `^20.19.0 || >=22.12.0`
+- pnpm `10.32.1`
 
-## パッケージをインストール
+## 開始
 
-プロジェクトのディレクトリに移動して実行
-
-```
-$ pnpm i
+```sh
+pnpm install
+pnpm dev
 ```
 
-## Vite の監視
+<http://localhost:5173> を開きます。開発中は`dist`へ出力しません。
 
-監視開始
-ローカルサーバーが立ち上がり確認可能（[localhost:4000](http://localhost:4000)）  
-/dist/ には書き出されないので注意
+## コマンド
 
+| コマンド | 結果 |
+| --- | --- |
+| `pnpm dev` | 開発サーバーを起動する |
+| `pnpm build` | 公開用ファイルを`dist`へ生成する |
+| `pnpm preview` | <http://localhost:8080> でビルド結果を確認する |
+| `pnpm lint` | TypeScriptとReactコードを検査する |
+| `pnpm test` | 共通要件を検査する |
+
+## 主なディレクトリ
+
+```text
+src/                 編集するソース
+  scripts/           React / TypeScript
+  styles/            Sass
+  public/            そのままコピーするファイル
+dist/                pnpm buildの出力
+vite.config.ts       Vite設定
 ```
-$ pnpm dev
-```
 
-## Vite のプレビュー
-
-公開用ファイルの確認
-ローカルサーバーが立ち上がり確認可能（[localhost:8080](http://localhost:8080)）  
-/dist/ には書き出されないので注意
-
-```
-$ pnpm preview
-```
-
-## 納品／アップロード用ファイル生成
-
-公開用ファイル一式を生成
-
-```
-$ pnpm build
-```
+共通仕様は[要件定義](../REQUIREMENTS.md)を参照してください。
 
 ## ディレクトリ構成
 
-```
-├─ dist/ (ビルド後、納品ファイルがここに生成されます)
-│  ├─ assets/
-│  │  ├─ css/
-│  │  ├─ fonts/
-│  │  ├─ images/
-│  │  └─ js/
-│  └─ index.html 他、ファイル、ディレクトリ群...
-│
-├─ node_modules/
-│  └─ パッケージ各種
-│
-├─ src/（ソース）
-│  ├─ about/index.html
-│  ├─ public/
-│  │  ├─ fonts/
-│  │  └─ images/
-│  ├─ react/index.html
-│  ├─ scripts/
-│  ├─ styles/
-│  └─ index.html
-│
-├─ eslint.config.mjs
-├─ package.json
-├─ pnpm-lock.yaml
-├─ pnpm-workspace.yaml
-├─ postcss.config.cjs
-├─ README.md
-├─ tsconfig.json
-└─ vite.config.ts
+```text
+vite-react/
+├── src/
+│   ├── about/          # Aboutページ
+│   ├── react/          # Reactサンプルページ
+│   ├── scripts/        # React / TypeScript
+│   ├── styles/         # Sass
+│   ├── public/         # そのままコピーするファイル
+│   └── index.html      # トップページ
+├── eslint.config.mjs   # lint設定
+├── postcss.config.mjs  # CSS処理設定
+├── tsconfig.json       # TypeScript設定
+├── vite.config.ts      # Vite設定
+└── package.json        # コマンドと依存関係
 ```

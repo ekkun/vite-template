@@ -3,11 +3,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { globSync } from 'glob';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-// __dirname を ESM でも使えるように
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // HTML エントリ（マルチページ）：src/**/*.html を自動取得
 const htmlFiles = globSync(['src/**/*.html'], {
@@ -18,7 +13,7 @@ const inputObject = Object.fromEntries(
   htmlFiles.map((file) => {
     // src からの相対パス（拡張子なし）
     const name = path.relative('src', file.slice(0, file.length - path.extname(file).length)).replace(/\\/g, '/'); // Windows 対応
-    const absPath = fileURLToPath(new URL(file, import.meta.url));
+    const absPath = new URL(file, import.meta.url).pathname;
     return [name, absPath];
   }),
 );
@@ -47,11 +42,11 @@ export default defineConfig(({ mode }) => {
   console.info('現在の環境:', isProduction ? 'ビルド環境' : isDevelopment ? '開発環境' : mode);
 
   return {
-    root: path.resolve(__dirname, './src'),
+    root: path.resolve(import.meta.dirname, 'src'),
     base: isProduction ? '/' : '/',
 
     server: {
-      port: 4000,
+      port: 5173,
       host: true,
       strictPort: true,
       watch: {
@@ -83,9 +78,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       modulePreload: { polyfill: false },
       cssCodeSplit: false,
-      cssMinify: 'esbuild',
       assetsInlineLimit: 0,
-      minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
       target: 'es2020', // 'es2015', 'es2020', 'es2022'
       rolldownOptions: {
         input: inputObject,

@@ -1,7 +1,7 @@
 {
   "name": "vite-pug-template",
   "description": "Vite + Pug + Sass",
-  "version": "1.4.9",
+  "version": "1.5.0",
   "keywords": [
     "Vite",
     "pug",
@@ -9,10 +9,17 @@
   ],
   "author": "e@oshinco.com",
   "license": "Oshinco Co-op",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "dev": "pnpm images:start && pnpm lint && vite --mode watch",
     "start": "pnpm dev",
     "preview": "pnpm images:start && pnpm lint && vite preview --mode production ",
+    "test": "node --test ../tests/template-contract.test.mjs tests/*.test.mjs",
     "build:dev": "pnpm clean:dist && vite build --mode development && pnpm html && pnpm images:build && pnpm style:media && pnpm style:process",
     "build:prod": "pnpm clean:dist && vite build --mode production && pnpm html && pnpm images:build && pnpm style:media && pnpm style:process",
     "build": "pnpm build:prod",
@@ -22,7 +29,7 @@
     "style:lint": "",
     "style:media": "node mediaQueries.mjs",
     "style:process": "node processCssFiles.mjs",
-    "es:lint": "eslint \"src/**/*.js\"",
+    "es:lint": "eslint \"src/js/**/*.js\"",
     "lint": "pnpm es:lint --fix",
     "images:build": "node convertImage.mjs -i ./src/images -o ./dist/assets/images -m -w -t -v",
     "images:start": "node convertImage.mjs -i ./src/images -o ./.pnpm/temp/public/assets/images -m -w -t -v",
@@ -36,64 +43,42 @@
     "update:all": "pnpm update -L"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@fullhuman/postcss-purgecss": "^7.0.2",
-    "@img/sharp-win32-x64": "^0.34.5",
-    "@markuplint/pug-parser": "^4.6.22",
-    "@types/node": "^25.0.8",
+    "@eslint/js": "^10.0.1",
+    "@fullhuman/postcss-purgecss": "^8.0.0",
+    "@markuplint/pug-parser": "^5.3.0",
+    "@types/node": "^26.6.5",
     "@types/pug": "^2.0.10",
-    "autoprefixer": "^10.4.23",
-    "commander": "^14.0.2",
-    "css-declaration-sorter": "^7.3.1",
-    "dotenv": "^17.2.3",
-    "esbuild": "^0.27.2",
-    "eslint": "^9.39.2",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "autoprefixer": "^10.6.1",
+    "commander": "^15.0.0",
+    "css-declaration-sorter": "^7.4.0",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "fs-extra": "^11.3.3",
-    "glob": "^13.0.0",
-    "globals": "^17.0.0",
-    "js-beautify": "^1.15.4",
-    "markuplint": "^4.14.0",
-    "postcss": "^8.5.6",
-    "postcss-merge-at-rules": "^1.2.0",
-    "postcss-normalize-charset": "^7.0.1",
-    "postcss-sort-media-queries": "^5.2.0",
-    "prettier": "^3.7.4",
-    "pug": "^3.0.3",
-    "rimraf": "^6.1.2",
-    "sass-embedded": "^1.97.2",
-    "sharp": "^0.34.5",
-    "svgo": "^4.0.0",
-    "vite": "npm:rolldown-vite@^7.3.1",
-    "vite-plugin-handlebars": "^2.0.0",
-    "vite-plugin-html": "^3.2.2",
-    "vite-plugin-live-reload": "^3.0.5"
+    "fs-extra": "^11.4.1",
+    "glob": "^13.0.6",
+    "globals": "^17.13.0",
+    "js-beautify": "^2.0.3",
+    "markuplint": "^5.3.0",
+    "postcss": "^8.5.31",
+    "postcss-merge-at-rules": "^2.0.1",
+    "postcss-normalize-charset": "^9.0.6",
+    "postcss-sort-media-queries": "^6.7.1",
+    "pug": "3.0.4",
+    "rimraf": "^6.1.3",
+    "sass": "^1.106.1",
+    "sharp": "^0.35.5",
+    "svgo": "^4.1.0",
+    "vite": "^8.3.5",
+    "vite-plugin-live-reload": "^4.0.0"
   },
   "dependencies": {
-    "jquery": "^3.7.1",
-    "kiso.css": "^1.2.3",
-    "supports-color": "10.2.2",
-    "tailwindcss": "^4.1.18"
+    "jquery": "^4.0.0",
+    "kiso.css": "^1.2.4"
   },
   "browserslist": [
-    "last 3 versions",
-    "ie >= 11"
+    "last 3 versions"
   ],
-  "pnpm": {
-    "overrides": {
-      "glob": "^11.1.0",
-      "esbuild": "^0.25.0"
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
-  },
   "comments": {
     "security issues": "pnpm audit --audit-level high, (Low、Moderate、High、Critical)",
-    "NOTE": "supports-color@8.1.1 を使用。debug等が10以降を要求してもアップデート不可。ESM化の影響を避けるため。"
+    "NOTE": ""
   }
 }

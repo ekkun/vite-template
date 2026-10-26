@@ -2,10 +2,8 @@ import { defineConfig } from 'vite';
 import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import vitePluginPug from './plugins/vite-plugin-pug';
+import vitePluginPug from './plugins/vite-plugin-pug.ts';
 import liveReload from 'vite-plugin-live-reload';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const inputPugArray = globSync(['src/**/*.pug'], { ignore: ['src/**/_*.pug', 'node_modules/**'] }).map((file) => {
   return [path.relative('src', file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))];
@@ -81,7 +79,7 @@ export default defineConfig(({ mode }) => {
     appType: 'mpa',
 
     server: {
-      port: 4000,
+      port: 5173,
       host: true,
       //open: '/index.html',
       strictPort: true,
@@ -101,7 +99,7 @@ export default defineConfig(({ mode }) => {
 
     base: isProduction ? '/' : '/',
 
-    root: path.resolve(__dirname, './src'),
+    root: path.resolve(import.meta.dirname, 'src'),
 
     css: {
       transformer: 'postcss',
@@ -117,10 +115,7 @@ export default defineConfig(({ mode }) => {
       outDir: '../dist',
       emptyOutDir: true,
       modulePreload: { polyfill: false },
-      //cssMinify: false,
-      cssMinify: 'esbuild',
       assetsInlineLimit: 0,
-      minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
       target: 'es2020', // 'es2015', 'es2020', 'es2022'
       rolldownOptions: {
         input: inputObject,

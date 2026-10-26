@@ -4,12 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import liveReload from 'vite-plugin-live-reload';
-import dotenv from 'dotenv';
-dotenv.config();
-
-// __dirname を ESM でも使えるように
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // HTML エントリ（マルチページ）：src/**/*.html を自動取得
 const inputHtmlArray = globSync(['src/**/*.html'], {
@@ -100,11 +94,11 @@ export default defineConfig(({ mode }) => {
   return {
     appType: 'mpa',
 
-    root: path.resolve(__dirname, './src'),
+    root: path.resolve(import.meta.dirname, 'src'),
     base: isProduction ? '/' : '/',
 
     server: {
-      port: 4000,
+      port: 5173,
       host: true,
       strictPort: true,
       watch: {
@@ -135,9 +129,7 @@ export default defineConfig(({ mode }) => {
       outDir: '../dist',
       emptyOutDir: true,
       modulePreload: { polyfill: false },
-      cssMinify: 'esbuild',
       assetsInlineLimit: 0,
-      minify: 'esbuild', // esbuild(非推奨), oxc(推奨)
       target: 'es2020', // 'es2015', 'es2020', 'es2022'
       rolldownOptions: {
         input: inputObject,
