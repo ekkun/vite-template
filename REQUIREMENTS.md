@@ -16,18 +16,20 @@
 | ディレクトリ | 用途 | テンプレート言語 | 画像最適化 |
 | --- | --- | --- | --- |
 | `vite-react` | Reactサイト | HTML + React/TypeScript | なし |
+| `vite-astro` | 新規の小規模な静的サイト | Astro | なし |
 | `vite-ejs-lite` | 小規模な静的サイト | EJS | なし |
 | `vite-ejs` | 画像を扱う静的サイト | EJS | あり |
 | `vite-pug` | 既存Pug案件の保守 | Pug | あり |
 
 ## 共通要件
 
-- Viteは8系の正式な `vite` パッケージを使う。
-- Node.jsはVite 8が対応するバージョンを使う。
+- Viteテンプレートは8系の正式な `vite` パッケージを使う。
+- Astroテンプレートは7系の正式な`astro`パッケージを使い、Astro内蔵のViteを使う。
+- ViteテンプレートはNode.js `^20.19.0 || >=22.12.0`、AstroテンプレートはNode.js `>=22.23.4`を使う。
 - パッケージ管理はpnpmに統一する。
-- 4テンプレートの開発サーバーはVite標準の`http://localhost:5173`に統一する。
-- JavaScript圧縮はVite 8標準のOxcを使う。
-- ビルド入力と出力はRolldown向けの設定を使う。
+- 5テンプレートの開発サーバーは`http://localhost:5173`に統一する。
+- ViteテンプレートのJavaScript圧縮はVite 8標準のOxcを使う。
+- Viteテンプレートのビルド入力と出力はRolldown向けの設定を使う。
 - `pnpm build`が成功し、成果物を各テンプレートの`dist`へ出力する。
 - ロックファイルをコミットし、同じ依存関係を再現できるようにする。
 - 不要な互換設定、空設定、重複設定を残さない。
@@ -59,7 +61,7 @@
 ## 完了条件
 
 - 要件テストがすべて成功する。
-- 4テンプレートのビルドがすべて成功する。
+- 5テンプレートのビルドがすべて成功する。
 - READMEのコマンドをそのまま実行できる。
 - `package.json`とロックファイルが一致する。
 - Git差分に生成物や意図しない変更が含まれない。
@@ -69,3 +71,21 @@
 - 古いVite、Node.js、npm、Yarnとの後方互換。
 - 既存設定を温存するためだけの移行コード。
 - Git管理外の`vite_sass`ディレクトリ。
+
+## Astroテンプレート
+
+- `vite-astro`はEJSの代替となる新規静的サイト用テンプレートとする。
+- ページは`src/pages`、共通レイアウトは`src/layouts`、HeaderやFooterは`src/components`に置く。
+- HTMLは`preserve`形式で、`src/pages`のファイル構成を保って出力する。
+- `directory`、`file`、`preserve`の違いと選択基準は`vite-astro/docs/build-formats.md`に記録する。
+- ディレクトリのトップは`index.astro`、同じディレクトリの下層ページは任意名の`.astro`で作成できる。
+- トップを`dist/index.html`、Aboutを`dist/about/index.html`、Newsを`dist/news/index.html`へ出力する。
+- ナビゲーションは`/about/`と`/news/`を参照する。
+- SCSSとJavaScriptは`vite-ejs-lite/src/scss`と`vite-ejs-lite/src/js`の構成を継承する。
+- Astroが生成するCSSは`dist/assets/css/style.css`、JavaScriptは`dist/assets/js/main.js`へ固定名で出力する。
+- その他の生成アセットは`dist/assets`へまとめる。
+- 画像は`dist/assets/images`、PDFは`dist/assets/pdf`、フォントは`dist/assets/fonts`へ拡張子を維持して出力する。
+- `vite-astro`にはビルドと参照方法を確認できる画像、PDF、WOFF2フォントのサンプルを置く。
+- ナビゲーションなどの繰り返しはAstroテンプレート内のJavaScript式で記述する。
+- 標準出力は静的HTMLとし、必要のないクライアントJavaScriptを生成しない。
+- トップ、About、Newsの3ページを持ち、共通HeaderとFooterを利用する。

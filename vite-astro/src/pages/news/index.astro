@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const news = [
+  { date: '2026-10-01', title: 'サイトを公開しました' },
+  { date: '2026-10-15', title: 'お知らせを追加しました' }
+];
+---
+
+<BaseLayout page="news" title="NEWS｜サイト名" description="ここにNEWSのディスクリプションが入ります">
+  <h1>NEWS</h1>
+  <ul class="news-list">
+    {
+      news.map((item) => (
+        <li>
+          <time datetime={item.date}>{item.date}</time>
+          <span>{item.title}</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

@@ -1,25 +1,28 @@
 {
   "folders": [
     {
-      "path": "."
+      "path": ".",
     },
     {
-      "path": "./vite-react/"
+      "path": "./vite-react/",
     },
     {
-      "path": "./vite-ejs/"
+      "path": "./vite-ejs/",
     },
     {
-      "path": "./vite-ejs-lite/"
+      "path": "./vite-ejs-lite/",
     },
     {
-      "path": "./vite-pug/"
-    }
+      "path": "./vite-pug/",
+    },
+    {
+      "path": "vite-astro",
+    },
   ],
   "settings": {
     "workbench.colorCustomizations": {
       "titleBar.activeBackground": "#D0609A",
-      "activityBarBadge.background": "#D0609A"
+      "activityBarBadge.background": "#D0609A",
     },
     "editor.codeActionsOnSave": null,
     "editor.tabSize": 2,
@@ -33,49 +36,49 @@
     "editor.comments.insertSpace": false,
     "emmet.includeLanguages": {
       "html": "html",
-      "ejs": "html"
+      "ejs": "html",
     },
     "[php]": {
       "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
       "editor.formatOnSave": false,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[html]": {
       "editor.defaultFormatter": "j69.ejs-beautify",
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[scss]": {
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[ejs]": {
       //"editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.defaultFormatter": "j69.ejs-beautify",
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[pug]": {
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[css]": {
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
+      "editor.insertSpaces": true,
     },
     "[json]": {
       "editor.formatOnSave": true,
-      "editor.insertSpaces": true
-    }
-  }
+      "editor.insertSpaces": true,
+    },
+  },
 }
