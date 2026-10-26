@@ -1,0 +1,11 @@
+// _fonts.scss
+
+@layer base {
+  @font-face {
+    font-family: 'Local Noto Sans JP';
+    //src: local('Noto Sans JP'), local('Noto Sans Japanese'), local('Noto Sans CJK JP'), local('Noto Sans JP Regular'), local('Noto Sans JP Bold');
+    src: local('Noto Sans JP');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+}

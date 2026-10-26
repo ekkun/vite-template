@@ -1,0 +1,21 @@
+---
+const navigation = [
+  { href: '/', label: 'HOME' },
+  { href: '/about/', label: 'ABOUT' },
+  { href: '/news/', label: 'NEWS' }
+];
+---
+
+<header class="header">
+  <nav class="gnavi" aria-label="メインナビゲーション">
+    <ul class="gnavi__list">
+      {
+        navigation.map((item) => (
+          <li class="gnavi__item">
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

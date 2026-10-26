@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import sampleImage from '../assets/images/sample.png?url';
+import samplePdf from '../assets/pdf/sample.pdf?url';
+---
+
+<BaseLayout page="home" title="HOME｜サイト名" description="ここにHOMEのディスクリプションが入ります">
+  <h1>HOME</h1>
+  <p>Astroで作る静的サイトのトップページです。</p>
+  <section class="asset-sample" aria-labelledby="asset-sample-heading">
+    <h2 id="asset-sample-heading">アセットのサンプル</h2>
+    <img src={sampleImage} width="300" height="200" alt="サンプル画像" />
+    <p><a href={samplePdf}>サンプルPDFを開く</a></p>
+    <p class="asset-sample__font">Sample web font</p>
+  </section>
+</BaseLayout>

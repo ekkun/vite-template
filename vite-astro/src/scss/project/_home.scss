@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'SampleFont';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../assets/fonts/blank.woff2') format('woff2');
+}
+
+.asset-sample {
+  margin-block-start: 2rem;
+}
+
+.asset-sample__font {
+  font-family: 'SampleFont', sans-serif;
+}

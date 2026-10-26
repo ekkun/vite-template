@@ -4,24 +4,29 @@ import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-const templates = ['vite-react', 'vite-ejs-lite', 'vite-ejs', 'vite-pug'];
+const viteTemplates = ['vite-react', 'vite-ejs-lite', 'vite-ejs', 'vite-pug'];
+const templates = [...viteTemplates, 'vite-astro'];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const readProjectFile = (file) => readFile(path.join(root, file), 'utf8');
 const readJson = async (file) => JSON.parse(await readProjectFile(file));
 
 for (const template of templates) {
-  test(`${template}: Vite 8と共通ツールチェーンを使う`, async () => {
+  test(`${template}: 対応するビルドツールと共通ツールチェーンを使う`, async () => {
     const packageJson = await readJson(`${template}/package.json`);
 
     assert.equal(packageJson.version, '1.5.0');
-    assert.match(packageJson.devDependencies.vite, /^\^8\./);
+    if (viteTemplates.includes(template)) {
+      assert.match(packageJson.devDependencies.vite, /^\^8\./);
+    } else {
+      assert.match(packageJson.devDependencies.astro, /^\^7\./);
+    }
     assert.equal(packageJson.packageManager, 'pnpm@10.32.1');
-    assert.equal(packageJson.engines.node, '^20.19.0 || >=22.12.0');
+    assert.equal(packageJson.engines.node, template === 'vite-astro' ? '>=22.23.4' : '^20.19.0 || >=22.12.0');
     assert.match(packageJson.scripts.test, /node --test .*\.test\.mjs/);
   });
 
-  test(`${template}: Vite 8の標準Oxc minifierを使う`, async () => {
+  if (viteTemplates.includes(template)) test(`${template}: Vite 8の標準Oxc minifierを使う`, async () => {
     const packageJson = await readJson(`${template}/package.json`);
     const configName = template === 'vite-react' ? 'vite.config.ts' : 'vite.config.mjs';
     const config = await readProjectFile(`${template}/${configName}`);
