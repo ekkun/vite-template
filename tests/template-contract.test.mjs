@@ -15,9 +15,9 @@ for (const template of templates) {
   test(`${template}: 対応するビルドツールと共通ツールチェーンを使う`, async () => {
     const packageJson = await readJson(`${template}/package.json`);
 
-    assert.equal(packageJson.version, '1.5.0');
+    assert.equal(packageJson.version, '1.5.1');
     if (viteTemplates.includes(template)) {
-      assert.match(packageJson.devDependencies.vite, /^\^8\./);
+      assert.match(packageJson.devDependencies.vite, /^\^8\.3\.(?:[8-9]|\d{2,})$/);
     } else {
       assert.match(packageJson.devDependencies.astro, /^\^7\./);
     }
@@ -35,6 +35,22 @@ for (const template of templates) {
     assert.doesNotMatch(config, /minify:\s*['"]esbuild['"]/);
     assert.doesNotMatch(config, /cssMinify:\s*['"]esbuild['"]/);
     assert.match(config, /server:\s*{[\s\S]*?port:\s*5173/);
+  });
+
+  test(`${template}: ロックファイル内のViteがGHSA-p4f5-76q4-ffq7対策済み(>=8.3.8)である`, async () => {
+    const lockfile = await readProjectFile(`${template}/pnpm-lock.yaml`);
+    const matches = [...lockfile.matchAll(/\bvite@(\d+\.\d+\.\d+)/g)];
+    assert.ok(matches.length > 0, `${template} に vite の依存関係が存在すること`);
+    for (const match of matches) {
+      const version = match[1];
+      const [major, minor, patch] = version.split('.').map(Number);
+      if (major === 8 && minor === 3) {
+        assert.ok(
+          patch >= 8,
+          `${template} の vite@${version} はGHSA-p4f5-76q4-ffq7対策済み(>=8.3.8)であること`
+        );
+      }
+    }
   });
 }
 
@@ -55,6 +71,7 @@ test('ルート資料がVite 8と資料ファースト開発を定義する', as
   ]);
 
   assert.match(readme, /Vite 8/);
+  assert.match(readme, /現在のバージョンは`1\.5\.1`です/);
   assert.match(requirements, /資料.*テスト.*実装.*整理/s);
   assert.match(agents, /実装より先に資料を更新/);
 });

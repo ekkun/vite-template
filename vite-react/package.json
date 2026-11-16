@@ -1,7 +1,7 @@
 {
   "name": "vite-react-template",
   "description": "Vite + React + Sass",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "keywords": [
     "Vite",
     "react",
@@ -49,7 +49,7 @@
     "postcss-sort-media-queries": "^6.7.1",
     "sass": "^1.106.1",
     "typescript": "^6.0.0",
-    "vite": "^8.3.5"
+    "vite": "^8.3.8"
   },
   "dependencies": {
     "react": "^19.3.1",
